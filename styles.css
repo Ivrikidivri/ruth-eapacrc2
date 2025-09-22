@@ -385,9 +385,11 @@ footer {
   text-decoration: underline;
 }
 
-/* Show submenu on hover */
-.has-submenu:hover .submenu {
-  display: flex;
+/* On desktop only, allow hover */
+@media (min-width: 769px) {
+•menu-item: hover › .dropdown {
+display: block;
+}
 }
 
 .slider {
@@ -1852,5 +1854,6 @@ a.button:hover {
       }
 
     }
+
 
 
