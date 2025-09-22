@@ -387,7 +387,7 @@ footer {
 
 /* On desktop only, allow hover */
 @media (min-width: 769px) {
-•menu-item: hover › .dropdown {
+.menu-item: hover > .dropdown {
 display: block;
 }
 }
@@ -1854,6 +1854,7 @@ a.button:hover {
       }
 
     }
+
 
 
 
