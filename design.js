@@ -231,4 +231,66 @@ document.addEventListener("DOMContentLoaded", () => {
 
 });
 
+// === Handle top-level dropdowns (mobile) ===
+const menuItems = document.querySelectorAll('.menu-item');
+
+menuItems.forEach(item => {
+  const link = item.querySelector('a');
+
+  link.addEventListener('click', e => {
+    if (window.innerWidth <= 768) {
+      const hasDropdown = item.querySelector('.dropdown');
+      if (!hasDropdown) return; // skip if no dropdown
+
+      e.preventDefault();
+
+      // 🔥 Close ALL other dropdown columns
+      menuItems.forEach(i => {
+        if (i !== item) {
+          i.classList.remove('active');
+        }
+      });
+
+      // Toggle only the clicked one
+      item.classList.toggle('active');
+    }
+  });
+});
+
+
+// === Handle nested submenus (mobile) ===
+const subMenuItems = document.querySelectorAll('.has-submenu');
+
+subMenuItems.forEach(subItem => {
+  const link = subItem.querySelector('a');
+
+  link.addEventListener('click', e => {
+    if (window.innerWidth <= 768) {
+      const hasSubmenu = subItem.querySelector('.submenu');
+      if (!hasSubmenu) return;
+
+      e.preventDefault();
+
+      // 🔥 Close sibling submenus inside the same parent
+      const siblings = subItem.parentElement.querySelectorAll('.has-submenu');
+      siblings.forEach(sib => {
+        if (sib !== subItem) sib.classList.remove('active');
+      });
+
+      // Toggle only the clicked submenu
+      subItem.classList.toggle('active');
+    }
+  });
+});
+
+
+// === Close everything when clicking outside ===
+document.addEventListener('click', e => {
+  if (!e.target.closest('.main-menu')) {
+    menuItems.forEach(i => i.classList.remove('active'));
+    subMenuItems.forEach(s => s.classList.remove('active'));
+  }
+});
+
+
 
