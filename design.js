@@ -32,8 +32,8 @@ document.addEventListener("DOMContentLoaded", () => {
                   if (item !== parent) item.classList.remove("active");
                 });
 
-                // Toggle clicked one
-                parent.classList.toggle("active");
+                 // Always open only the clicked one
+                parent.classList.add("active");
               }
             });
           }
@@ -128,6 +128,7 @@ document.addEventListener("DOMContentLoaded", () => {
     else closeFullImg();
   }
 });
+
 
 
 
