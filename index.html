@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EAPacRC Secretariat</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Top utility bar -->
+  <div class="utility-bar">
+    <div class="utility-left">
+      <button onclick="location.href='index.html'">
+        Welcome to EAPACRC Secretariat
+      </button>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <header class="main-header">
+    <div class="logo-area">
+      <img src="Assets/EAPACRC OF CHESHIRE HOMES (2) (2).png" alt="EAPacRC of Cheshire Homes" onclick="location.href='index.html'">
+      <div class="divider"></div>
+      <div class="title-slogan">
+        <h1>East Asia & Pacific Regional Council Secretariat</h1>
+        <p>Empowering People With Disabilities</p>
+      </div>
+    </div>
+    <div class="header-actions">
+      <div class="search-box">
+        <input type="text" placeholder="Search" aria-label="Search">
+        <button type="submit" aria-label="Search">
+          <i class="fas fa-search"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- 🔹 Navbar loads dynamically -->
+  <div id="navbar"></div>
+
+  <!-- MAIN CONTENT -->
+  <main>
+    <section class="hero-article">
+      <div class="slider">
+        <div class="slides">
+          <div class="slide">
+            <img src="Assets/Screenshot 2025-09-11 150855.jpg" alt="Image 1" loading="lazy">
+          </div>
+          <div class="slide">
+            <img src="Assets/Scan 04 Sept 25 16·12·08_2.jpg" alt="Image 2" loading="lazy">
+          </div>
+          <div class="slide">
+            <img src="Assets/Scan 04 Sept 25 16·12·08_3.jpg" alt="Image 3" loading="lazy">
+          </div>
+          <div class="slide">
+            <img src="Assets/Scan 04 Sept 25 16·13·59.jpg" alt="Image 4" loading="lazy">
+          </div>
+        </div>
+
+        <!-- Buttons -->
+        <button class="prev" aria-label="Previous Slide">&#10094;</button>
+        <button class="next" aria-label="Next Slide">&#10095;</button>
+      </div>
+
+      <div class="article-text-1">
+        <h2>The EAPacRC Secretariat</h2>
+        <p>The East Asia & Pacific Regional Council (EAPacRC) of Cheshire Homes is a collaborative body of member organizations working together across our region.</p>
+        <p>We are driven by a shared vision:   
+          <span class="quote">
+            "A world where every person with a disability lives with dignity, inclusion, and independence".
+          </span>
+        </p>
+        <p>EAPacRC exists to connect people and organizations, to learn from one another, and to act together.</p>
+        <p>Through collaboration, we share experiences, address challenges, and create solutions that open doors to equal opportunities and meaningful participation for every PwD.</p>
+      </div>
+    </section>
+
+    <section class="hero-article">
+      <div class="article-text-2">
+        <p>
+          <span class="quote-2">"The true measure of a society is how it embraces its most vulnerable members." - Mahatma Gandhi</span>
+        </p>
+      </div>
+    </section>
+
+    <div class="widget-wrapper">
+      <div class="elfsight-app-ff2ffcfb-2b3d-47e4-aebb-2be7e6d719ad" data-elfsight-app-lazy></div>
+    </div>
+  </main>
+
+  <!-- JS -->
+  <script src="design.js"></script>
+  <script src="https://static.elfsight.com/platform/platform.js" async></script>
+
+  <!-- 🔹 Footer loads dynamically -->
+  <div id="footer"></div>
+
+</body>
+</html>

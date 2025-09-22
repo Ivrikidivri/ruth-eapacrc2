@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Partnership</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<!-- Top utility bar -->
+  <div class="utility-bar">
+    <div class="utility-left">
+      <button onclick="location.href='index.html'">
+        Welcome to EAPacRC Secretariat
+      </button>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <header class="main-header">
+    <div class="logo-area">
+      <img src="Assets/EAPACRC OF CHESHIRE HOMES (2) (2).png" alt="EAPacRC of Cheshire Homes" onclick="location.href='index.html'">
+      <div class="divider"></div>
+      <div class="title-slogan">
+        <h1>East Asia & Pacific Regional Council Secretariat</h1>
+        <p>Empowering People With Disabilities</p>
+      </div>
+    </div>
+    <div class="header-actions">
+      <div class="search-box">
+        <input type="text" placeholder="Search" aria-label="Search">
+        <button type="submit" aria-label="Search">
+          <i class="fas fa-search"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- 🔹 Navbar loads dynamically -->
+  <div id="navbar"></div>
+
+<main>
+  <div class="form-section">
+    <!-- Left panel -->
+    <div class="form-intro">
+      <h1>Get Involved</h1>
+      <p class="quote">“Disability is not inability.”</p>
+      <p>Join hands with us to build a more inclusive future.  
+         Share your initiative, collaborate, or volunteer — your step matters!</p>
+    </div>
+
+    <!-- Right panel -->
+    <div class="form-container">
+      <form action="https://formspree.io/f/yourformid" method="POST">
+        <label for="name">Full Name *</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="email">Email Address *</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="phone">Phone / WhatsApp</label>
+        <input type="tel" id="phone" name="phone">
+
+        <label for="type">Type of Initiative *</label>
+        <select id="type" name="type" required>
+          <option value="">-- Please Select --</option>
+          <option value="volunteer">Volunteer</option>
+          <option value="internship">Internship</option>
+          <option value="partnership">Partnership</option>
+          <option value="research">Research</option>
+          <option value="other">Other</option>
+        </select>
+
+        <label for="message">Your Message / Initiative Description *</label>
+        <textarea id="message" name="message" rows="5" required></textarea>
+
+        <button type="submit">Submit Your Initiative</button>
+      </form>
+    </div>
+
+ <div class="widget-wrapper">
+      <div class="elfsight-app-ff2ffcfb-2b3d-47e4-aebb-2be7e6d719ad" data-elfsight-app-lazy></div>
+    </div>
+  </div>
+</main>
+
+  <!-- JS -->
+  <script src="design.js"></script>
+  <script src="https://static.elfsight.com/platform/platform.js" async></script>
+
+  <!-- 🔹 Footer loads dynamically -->
+  <div id="footer"></div>
+</body>
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Documents - Secretariat</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Top utility bar -->
+  <div class="utility-bar">
+    <div class="utility-left">
+      <button onclick="location.href='index.html'">
+        Welcome to EAPacRC Secretariat
+      </button>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <header class="main-header">
+    <div class="logo-area">
+      <img src="Assets/EAPACRC OF CHESHIRE HOMES (2) (2).png" alt="EAPacRC of Cheshire Homes" onclick="location.href='index.html'">
+      <div class="divider"></div>
+      <div class="title-slogan">
+        <h1>East Asia & Pacific Regional Council Secretariat</h1>
+        <p>Empowering People With Disabilities</p>
+      </div>
+    </div>
+    <div class="header-actions">
+      <div class="search-box">
+        <input type="text" placeholder="Search" aria-label="Search">
+        <button type="submit" aria-label="Search">
+          <i class="fas fa-search"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- 🔹 Navbar loads dynamically -->
+  <div id="navbar"></div>
+
+<main>
+<div class="documents-container">
+    <h1>Documents</h1>
+    <p class="intro">A list of official publications, reports, and newsletters. Click the links to download.</p>
+
+    <ul class="documents-list">
+        <li>
+            <span class="title">Annual Report 2024</span>
+            <span class="description">Overview of programs and achievements in 2024.</span>
+            <a class="download" href="documents/annual-report-2024.pdf" target="_blank">Download</a>
+        </li>
+        <li>
+            <span class="title">Meeting Minutes - Q1</span>
+            <span class="description">Minutes from first-quarter meetings.</span>
+            <a class="download" href="documents/meeting-minutes-q1.pdf" target="_blank">Download</a>
+        </li>
+        <li>
+            <span class="title">Newsletter July 2025</span>
+            <span class="description">Highlights and updates from July 2025.</span>
+            <a class="download" href="documents/newsletter-july-2025.pdf" target="_blank">Download</a>
+        </li>
+        <li>
+            <span class="title">Policy Update</span>
+            <span class="description">Important policy changes and updates for staff and partners.</span>
+            <a class="download" href="documents/policy-update.pdf" target="_blank">Download</a>
+        </li>
+    </ul>
+</div>
+
+
+    <div class="widget-wrapper">
+      <div class="elfsight-app-ff2ffcfb-2b3d-47e4-aebb-2be7e6d719ad" data-elfsight-app-lazy></div>
+    </div>
+  </main>
+
+  <!-- JS -->
+  <script src="design.js"></script>
+  <script src="https://static.elfsight.com/platform/platform.js" async></script>
+
+  <!-- 🔹 Footer loads dynamically -->
+  <div id="footer"></div>
+
+</body>
+</html>

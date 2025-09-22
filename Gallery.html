@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Gallery</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  </head>
+  <body>
+<!-- Top utility bar -->
+  <div class="utility-bar">
+    <div class="utility-left">
+      <button onclick="location.href='index.html'">
+        Welcome to EAPacRC Secretariat
+      </button>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <header class="main-header">
+    <div class="logo-area">
+      <img src="Assets/EAPACRC OF CHESHIRE HOMES (2) (2).png" alt="EAPacRC of Cheshire Homes" onclick="location.href='index.html'">
+      <div class="divider"></div>
+      <div class="title-slogan">
+        <h1>East Asia & Pacific Regional Council Secretariat</h1>
+        <p>Empowering People With Disabilities</p>
+      </div>
+    </div>
+    <div class="header-actions">
+      <div class="search-box">
+        <input type="text" placeholder="Search" aria-label="Search">
+        <button type="submit" aria-label="Search">
+          <i class="fas fa-search"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+    <div class="full-img" id="fullImgBox" style="display: none;">
+      <div class="lightbox" id="lightBox">
+      <div class=lightbox-overlay>
+        <a class="arrow left" onclick="prevImage()">&#10094;</a>
+        <img src="Assets/_DO_0443 (1) - grace pham.jpg" id="fullImg">
+        <a class="arrow right" onclick="nextImage()">&#10095;</a>
+        <span onclick="closeFullImg()">X</span>
+      </div>
+    </div>
+    </div>
+
+    <!-- 🔹 Navbar loads dynamically -->
+  <div id="navbar"></div>
+    
+  <main>
+    <div class="gallery-title-wrapper">
+    <h1 class="gallery-title">Image Gallery</h1>
+    </div>
+
+    <div class="img-gallery">
+        <div><img src="Assets/20250903143428325.jpg" alt="EAPacRC of Cheshire Homes"></div>
+        <div><img src="Assets/Scan 04 Sept 25 16·12·08_2.jpg" alt="EAPacRC of Cheshire Homes"></div>
+        <div><img src="Assets/Scan 04 Sept 25 16·12·08_3.jpg" alt="EAPacRC of Cheshire Homes"></div>
+        <div><img src="Assets/Scan 04 Sept 25 16·13·59.jpg" alt="EAPacRC of Cheshire Homes"></div>
+        <div><img src="Assets/Scan 04 Sept 25 16·15·51.jpg" alt="EAPacRC of Cheshire Homes"></div>
+        <div><img src="Assets/Scan 04 Sept 25 16·17·40.jpg" alt="EAPacRC of Cheshire Homes"></div>
+        <div><img src="Assets/IMG_8111 (1) (1).jpg" alt="EAPacRC OF Cheshire Homes"></div>
+    </div>
+    
+     <div class="widget-wrapper">
+      <div class="elfsight-app-ff2ffcfb-2b3d-47e4-aebb-2be7e6d719ad" data-elfsight-app-lazy></div>
+    </div>
+  </main>
+
+  <!-- JS -->
+  <script src="design.js"></script>
+  <script src="https://static.elfsight.com/platform/platform.js" async></script>
+
+<!-- 🔹 Footer loads dynamically -->
+  <div id="footer"></div>
+  
+  </body>
+</html>

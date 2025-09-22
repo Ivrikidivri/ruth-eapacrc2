@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Donate - EAPACRC Secretariat</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Top utility bar -->
+  <div class="utility-bar">
+    <div class="utility-left">
+      <button onclick="location.href='index.html'">
+        Welcome to EAPACRC Secretariat
+      </button>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <header class="main-header">
+    <div class="logo-area">
+      <img src="Assets/EAPACRC OF CHESHIRE HOMES (2) (2).png" alt="EAPacRC of Cheshire Homes" onclick="location.href='index.html'">
+      <div class="divider"></div>
+      <div class="title-slogan">
+        <h1>East Asia & Pacific Regional Council Secretariat</h1>
+        <p>Empowering People With Disabilities</p>
+      </div>
+    </div>
+    <div class="header-actions">
+      <div class="search-box">
+        <input type="text" placeholder="Search" aria-label="Search">
+        <button type="submit" aria-label="Search">
+          <i class="fas fa-search"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- 🔹 Navbar loads dynamically -->
+  <div id="navbar"></div>
+
+  <main>
+  <!-- Hero Section -->
+  <section class="hero">
+    <h1>Support EAPACRC Secretariat</h1>
+    <p>Your contribution helps us strengthen regional cooperation and support our programs. Every donation makes a difference.</p>
+  </section>
+
+  <!-- Donation Methods -->
+  <main class="donate-section">
+    <h2>How You Can Donate</h2>
+    <div class="donate-grid">
+      
+      <div class="donate-card">
+        <h3>Bank Transfer</h3>
+        <p>Transfer your donation directly to our bank account:</p>
+        <p><strong>Bank:</strong> XYZ Bank<br>
+        <strong>Account Name:</strong> EAPACRC Secretariat<br>
+        <strong>Account Number:</strong> 123-456-789</p>
+        <a href="#" class="button">Donate Now</a>
+      </div>
+
+      <!--<div class="donate-card">
+        <h3>PayPal / Online Payment</h3>
+        <p>Use your PayPal account or credit card for a secure donation.</p>
+        <a href="#" class="button">Donate Now</a>
+      </div>-->
+
+      <div class="donate-card">
+        <h3>In-Kind Donations</h3>
+        <p>Support our programs with materials, equipment, or services.</p>
+        <a href="#" class="button">Learn More</a>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- JS -->
+  <script src="design.js"></script>
+  <script src="https://static.elfsight.com/platform/platform.js" async></script>
+
+  <!-- 🔹 Footer loads dynamically -->
+  <div id="footer"></div>
+
+
+</body>
+</html>
