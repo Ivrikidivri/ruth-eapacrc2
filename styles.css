@@ -534,7 +534,7 @@ display: block;
   cursor: pointer;
   color: #fff;
   position: relative;
-  z-index: 10000;         /* above everything */
+  z-index: 999;         /* above everything */
 }
 
 /* === MOBILE NAVBAR === */
@@ -1854,6 +1854,7 @@ a.button:hover {
       }
 
     }
+
 
 
 
