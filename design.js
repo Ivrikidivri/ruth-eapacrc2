@@ -130,27 +130,51 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 document.addEventListener("DOMContentLoaded", () => {
-  const menuItems = document.querySelectorAll(".menu-item");
+  const toggleBtn = document.querySelector(".menu-toggle");
+  const menu = document.querySelector("#main-menu");
+  const menuItems = document.querySelectorAll(".menu-item > a, .has-submenu > a");
 
-  menuItems.forEach(item => {
-    const link = item.querySelector("a");
+  // Toggle overlay menu
+  toggleBtn.addEventListener("click", () => {
+    menu.classList.toggle("show");
+    toggleBtn.classList.toggle("open"); // optional: for changing hamburger ↔ close icon
+  });
 
-    link.addEventListener("click", (e) => {
-      e.preventDefault();
+  // Accordion dropdowns
+  menuItems.forEach(link => {
+    link.addEventListener("click", e => {
+      const parentItem = link.parentElement;
 
-      // Close all other open dropdowns
-      menuItems.forEach(i => {
-        if (i !== item) {
-          i.classList.remove("active");
-        }
-      });
+      // Check if this item has a dropdown/submenu
+      const dropdown = parentItem.querySelector(".dropdown, .submenu");
+      if (dropdown) {
+        e.preventDefault();
 
-      // Toggle the clicked one
-      item.classList.toggle("active");
+        // Close other open dropdowns
+        menu.querySelectorAll(".menu-item.active, .has-submenu.active").forEach(item => {
+          if (item !== parentItem) item.classList.remove("active");
+        });
+
+        // Toggle this one
+        parentItem.classList.toggle("active");
+      }
     });
   });
-});
 
+  // Close menu/dropdowns when clicking outside
+  document.addEventListener("click", e => {
+    if (!menu.contains(e.target) && !toggleBtn.contains(e.target)) {
+      // Close overlay
+      menu.classList.remove("show");
+      toggleBtn.classList.remove("open");
+
+      // Close any open dropdowns
+      menu.querySelectorAll(".menu-item.active, .has-submenu.active").forEach(item => {
+        item.classList.remove("active");
+      });
+    }
+  });
+});
 
 
 
