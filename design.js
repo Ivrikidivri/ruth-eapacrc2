@@ -129,6 +129,25 @@ document.addEventListener("DOMContentLoaded", () => {
     else closeFullImg();
   }
 
+// === Nested submenus (accordion style on mobile) ===
+const submenuParents = navbarContainer.querySelectorAll(".has-submenu > a");
+
+submenuParents.forEach(link => {
+  link.addEventListener("click", e => {
+    if (window.innerWidth <= 768) {
+      e.preventDefault();
+      const parent = link.parentElement;
+
+      // 🔥 Close sibling submenus in the same column
+      parent.parentElement.querySelectorAll(".has-submenu").forEach(sib => {
+        if (sib !== parent) sib.classList.remove("active");
+      });
+
+      // Toggle only this submenu
+      parent.classList.toggle("active");
+    }
+  });
+});
 
 
 
