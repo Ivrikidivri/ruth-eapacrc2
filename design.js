@@ -27,11 +27,12 @@ document.addEventListener("DOMContentLoaded", () => {
               if (window.innerWidth <= 768) {
                 e.preventDefault();
 
-               // 🔥 Close ALL top-level dropdowns first
+                // 🔥 Close all other dropdowns
                 navbarContainer.querySelectorAll(".menu-item").forEach(item => {
-                if (item !== parent) item.classList.remove("active");
+                  if (item !== parent) item.classList.remove("active");
                 });
-                // Toggle only the clicked one
+
+                // Toggle clicked one
                 parent.classList.toggle("active");
               }
             });
@@ -46,13 +47,12 @@ document.addEventListener("DOMContentLoaded", () => {
               e.preventDefault();
               const parent = link.parentElement;
 
-              // 🔥 Close siblings
-              const siblings = parent.parentElement.querySelectorAll(".has-submenu");
-              siblings.forEach(sib => {
+              // 🔥 Close sibling submenus only
+              parent.parentElement.querySelectorAll(".has-submenu").forEach(sib => {
                 if (sib !== parent) sib.classList.remove("active");
               });
 
-              // Toggle current submenu
+              // Toggle only this submenu
               parent.classList.toggle("active");
             }
           });
@@ -76,7 +76,6 @@ document.addEventListener("DOMContentLoaded", () => {
       .then(data => footerContainer.innerHTML = data)
       .catch(err => console.error("Footer load error:", err));
   }
-});
 
   // === Index Slider ===
   const slides = document.querySelector('.slides');
@@ -128,25 +127,6 @@ document.addEventListener("DOMContentLoaded", () => {
     if (currentIndex > 0) currentIndex--, fullImg.src = images[currentIndex];
     else closeFullImg();
   }
-
-// === Nested submenus (accordion style on mobile) ===
-const submenuParents = navbarContainer.querySelectorAll(".has-submenu > a");
-
-submenuParents.forEach(link => {
-  link.addEventListener("click", e => {
-    if (window.innerWidth <= 768) {
-      e.preventDefault();
-      const parent = link.parentElement;
-
-      // 🔥 Close sibling submenus in the same column
-      parent.parentElement.querySelectorAll(".has-submenu").forEach(sib => {
-        if (sib !== parent) sib.classList.remove("active");
-      });
-
-      // Toggle only this submenu
-      parent.classList.toggle("active");
-    }
-  });
 });
 
 
