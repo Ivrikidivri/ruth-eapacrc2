@@ -28,9 +28,9 @@ document.addEventListener("DOMContentLoaded", () => {
                 e.preventDefault();
 
                // 🔥 Close ALL top-level dropdowns first
-navbarContainer.querySelectorAll(".menu-item").forEach(item => {
-  if (item !== parent) item.classList.remove("active");
-});
+                navbarContainer.querySelectorAll(".menu-item").forEach(item => {
+                if (item !== parent) item.classList.remove("active");
+                });
                 // Toggle only the clicked one
                 parent.classList.toggle("active");
               }
@@ -128,6 +128,7 @@ navbarContainer.querySelectorAll(".menu-item").forEach(item => {
     if (currentIndex > 0) currentIndex--, fullImg.src = images[currentIndex];
     else closeFullImg();
   }
+
 
 
 
