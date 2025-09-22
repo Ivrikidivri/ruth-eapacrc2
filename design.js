@@ -165,23 +165,3 @@ document.addEventListener('click', (e) => {
   }
 });
 
-// Select all dropdown toggles
-const dropdownToggles = document.querySelectorAll('.menu-item.has-submenu > a');
-
-dropdownToggles.forEach(link => {
-  link.addEventListener('click', e => {
-    e.preventDefault(); // stop default link action
-
-    const parent = link.parentElement;
-
-    // Close all other dropdowns
-    document.querySelectorAll('.menu-item.has-submenu.active').forEach(item => {
-      if (item !== parent) {
-        item.classList.remove('active');
-      }
-    });
-
-    // Toggle clicked dropdown
-    parent.classList.toggle('active');
-  });
-});
