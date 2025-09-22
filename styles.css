@@ -715,14 +715,6 @@ footer {
     color: darkred !important;
     background: #fff !important;
   }  
-  
-.main-menu .dropdown a,
-.main-menu .submenu a {
-    white-space: normal;
-    word-break: break-word;
-  }
-
-  
 }
 
 
@@ -1860,4 +1852,5 @@ a.button:hover {
       }
 
     }
+
 
