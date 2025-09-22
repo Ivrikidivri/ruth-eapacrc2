@@ -27,13 +27,10 @@ document.addEventListener("DOMContentLoaded", () => {
               if (window.innerWidth <= 768) {
                 e.preventDefault();
 
-                // 🔥 Close all other dropdowns
-                topLinks.forEach(otherLink => {
-                  if (otherLink !== link) {
-                    otherLink.parentElement.classList.remove("active");
-                  }
-                });
-
+               // 🔥 Close ALL top-level dropdowns first
+navbarContainer.querySelectorAll(".menu-item").forEach(item => {
+  if (item !== parent) item.classList.remove("active");
+});
                 // Toggle only the clicked one
                 parent.classList.toggle("active");
               }
@@ -131,6 +128,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (currentIndex > 0) currentIndex--, fullImg.src = images[currentIndex];
     else closeFullImg();
   }
+
 
 
 
