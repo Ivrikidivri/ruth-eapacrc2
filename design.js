@@ -111,57 +111,33 @@ if (toggleBtn && navMenu) {
     else closeFullImg();
   }
 
+const allDropdowns = document.querySelectorAll('.menu-item, .has-submenu');
 
-// Top-level menu items with dropdown
-const menuItems = document.querySelectorAll('.menu-item');
-
-// Nested submenu items
-const subMenuItems = document.querySelectorAll('.has-submenu');
-
-menuItems.forEach(item => {
+allDropdowns.forEach(item => {
   const link = item.querySelector('a');
-  link.addEventListener('click', (e) => {
+  link.addEventListener('click', e => {
     if (window.innerWidth <= 768) {
-      e.preventDefault(); // prevent navigation if dropdown exists
+      const hasSubmenu = item.querySelector('.dropdown, .submenu');
+      if (!hasSubmenu) return; // only toggle if it has a submenu
 
-      // Close other top-level dropdowns
-      menuItems.forEach(i => {
-        if (i !== item) {
-          i.classList.remove('active');
-        }
+      e.preventDefault();
+
+      // Close all other open dropdowns
+      allDropdowns.forEach(i => {
+        if (i !== item) i.classList.remove('active');
       });
 
-      // Toggle current dropdown
+      // Toggle the clicked dropdown
       item.classList.toggle('active');
     }
   });
 });
 
-subMenuItems.forEach(subItem => {
-  const link = subItem.querySelector('a');
-  link.addEventListener('click', (e) => {
-    if (window.innerWidth <= 768) {
-      e.preventDefault(); // prevent navigation if nested submenu exists
-
-      // Close sibling submenus
-      const siblings = subItem.parentElement.querySelectorAll('.has-submenu');
-      siblings.forEach(sib => {
-        if (sib !== subItem) {
-          sib.classList.remove('active');
-        }
-      });
-
-      // Toggle current nested submenu
-      subItem.classList.toggle('active');
-    }
-  });
-});
-
 // Close all menus if clicking outside
-document.addEventListener('click', (e) => {
+document.addEventListener('click', e => {
   if (!e.target.closest('.main-menu')) {
-    menuItems.forEach(i => i.classList.remove('active'));
-    subMenuItems.forEach(s => s.classList.remove('active'));
+    allDropdowns.forEach(i => i.classList.remove('active'));
   }
 });
+
 
