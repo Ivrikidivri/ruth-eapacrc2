@@ -129,6 +129,30 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
+document.addEventListener("DOMContentLoaded", () => {
+  const menuItems = document.querySelectorAll(".menu-item");
+
+  menuItems.forEach(item => {
+    const link = item.querySelector("a");
+
+    link.addEventListener("click", (e) => {
+      e.preventDefault();
+
+      // Close all other open dropdowns
+      menuItems.forEach(i => {
+        if (i !== item) {
+          i.classList.remove("active");
+        }
+      });
+
+      // Toggle the clicked one
+      item.classList.toggle("active");
+    });
+  });
+});
+
+
+
 
 
 
