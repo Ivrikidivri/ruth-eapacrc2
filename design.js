@@ -1,5 +1,4 @@
 document.addEventListener("DOMContentLoaded", () => {
-
   // === Load Navbar dynamically ===
   const navbarContainer = document.getElementById("navbar");
   if (navbarContainer) {
@@ -8,28 +7,17 @@ document.addEventListener("DOMContentLoaded", () => {
       .then(data => {
         navbarContainer.innerHTML = data;
 
-      // Hamburger toggle
-const toggleBtn = navbarContainer.querySelector('.menu-toggle');
-const navMenu = navbarContainer.querySelector('.main-menu');
-if (toggleBtn && navMenu) {
-  toggleBtn.addEventListener('click', () => {
-    navMenu.classList.toggle('show');
-    toggleBtn.classList.toggle('active'); // 🔥 add this line
-  });
-}
-
-        // Mobile accordion submenus
-        const submenuParents = navbarContainer.querySelectorAll(".has-submenu > a");
-        submenuParents.forEach(link => {
-          link.addEventListener("click", e => {
-            if (window.innerWidth <= 768) {
-              e.preventDefault();
-              link.parentElement.classList.toggle("active");
-            }
+        // === Hamburger toggle ===
+        const toggleBtn = navbarContainer.querySelector('.menu-toggle');
+        const navMenu = navbarContainer.querySelector('.main-menu');
+        if (toggleBtn && navMenu) {
+          toggleBtn.addEventListener('click', () => {
+            navMenu.classList.toggle('show');
+            toggleBtn.classList.toggle('active');
           });
-        });
+        }
 
-        // Top-level dropdowns (mobile)
+        // === Top-level dropdowns (accordion style on mobile) ===
         const topLinks = navbarContainer.querySelectorAll(".menu-item > a");
         topLinks.forEach(link => {
           const parent = link.parentElement;
@@ -38,16 +26,52 @@ if (toggleBtn && navMenu) {
             link.addEventListener("click", e => {
               if (window.innerWidth <= 768) {
                 e.preventDefault();
+
+                // 🔥 Close all other dropdowns
+                topLinks.forEach(otherLink => {
+                  if (otherLink !== link) {
+                    otherLink.parentElement.classList.remove("active");
+                  }
+                });
+
+                // Toggle only the clicked one
                 parent.classList.toggle("active");
               }
             });
+          }
+        });
+
+        // === Nested submenus (accordion style on mobile) ===
+        const submenuParents = navbarContainer.querySelectorAll(".has-submenu > a");
+        submenuParents.forEach(link => {
+          link.addEventListener("click", e => {
+            if (window.innerWidth <= 768) {
+              e.preventDefault();
+              const parent = link.parentElement;
+
+              // 🔥 Close siblings
+              const siblings = parent.parentElement.querySelectorAll(".has-submenu");
+              siblings.forEach(sib => {
+                if (sib !== parent) sib.classList.remove("active");
+              });
+
+              // Toggle current submenu
+              parent.classList.toggle("active");
+            }
+          });
+        });
+
+        // === Close all when clicking outside ===
+        document.addEventListener('click', e => {
+          if (!e.target.closest('.main-menu')) {
+            navbarContainer.querySelectorAll('.active').forEach(el => el.classList.remove('active'));
           }
         });
       })
       .catch(err => console.error("Navbar load error:", err));
   }
 
-  // === Load Footer dynamically ===
+  // === Footer ===
   const footerContainer = document.getElementById("footer");
   if (footerContainer) {
     fetch("footer.html")
@@ -55,10 +79,7 @@ if (toggleBtn && navMenu) {
       .then(data => footerContainer.innerHTML = data)
       .catch(err => console.error("Footer load error:", err));
   }
-
-
 });
-
 
   // === Index Slider ===
   const slides = document.querySelector('.slides');
@@ -110,6 +131,7 @@ if (toggleBtn && navMenu) {
     if (currentIndex > 0) currentIndex--, fullImg.src = images[currentIndex];
     else closeFullImg();
   }
+
 
 
 
