@@ -119,3 +119,80 @@ document.addEventListener('click', e => {
   }
 });
 
+
+// === Handle top-level dropdowns ===
+const menuItems = document.querySelectorAll('.menu-item');
+
+menuItems.forEach(item => {
+  const link = item.querySelector('a');
+
+  link.addEventListener('click', e => {
+    if (window.innerWidth <= 768) {
+      const hasDropdown = item.querySelector('.dropdown');
+      if (!hasDropdown) return; // skip if no dropdown
+
+      e.preventDefault();
+
+      // Close ALL other top-level menus
+      menuItems.forEach(i => {
+        if (i !== item) i.classList.remove('active');
+      });
+
+      // Toggle this menu
+      item.classList.toggle('active');
+    }
+  });
+});
+
+
+// === Handle nested submenus ===
+const subMenuItems = document.querySelectorAll('.has-submenu');
+
+subMenuItems.forEach(subItem => {
+  const link = subItem.querySelector('a');
+
+  link.addEventListener('click', e => {
+    if (window.innerWidth <= 768) {
+      const hasSubmenu = subItem.querySelector('.submenu');
+      if (!hasSubmenu) return; 
+
+      e.preventDefault();
+
+      // Close siblings inside the same parent
+      const siblings = subItem.parentElement.querySelectorAll('.has-submenu');
+      siblings.forEach(sib => {
+        if (sib !== subItem) sib.classList.remove('active');
+      });
+
+      // Toggle this submenu
+      subItem.classList.toggle('active');
+    }
+  });
+});
+
+
+// === Close all dropdowns when clicking outside ===
+document.addEventListener('click', e => {
+  if (!e.target.closest('.main-menu')) {
+    menuItems.forEach(i => i.classList.remove('active'));
+    subMenuItems.forEach(s => s.classList.remove('active'));
+  }
+});
+What this does:
+At the top level → only one main dropdown (e.g. Nations OR Work With Us) can be open.
+
+At the submenu level → only one submenu within the same parent can be open.
+
+Clicking outside closes everything.
+
+Do you want me to also make it so that submenus don’t close their parent menu when switching between them? (i.e., keep Nations open while switching between its child submenus).
+
+
+
+
+
+
+
+Ask ChatGPT
+
+
