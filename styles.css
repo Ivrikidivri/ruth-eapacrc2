@@ -715,68 +715,16 @@ footer {
     color: darkred !important;
     background: #fff !important;
   }  
-}
-
-/* MOBILE DROPDOWN STYLING */
-@media (max-width: 768px) {
-  /* Parent dropdown */
-  .main-menu .dropdown {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;          /* allow wrapping */
-    justify-content: flex-start;
-    align-items: center;      /* center links inside */
-    gap: 5px 15px;            /* spacing between links */
-    padding: 0.5rem 0;
-    background: #fff;
-    border-radius: 8px;
-  }
-
-  /* Dropdown links */
-  .main-menu .dropdown a {
-    flex: 0 1 auto;           /* shrink but keep natural width */
-    text-align: center;
-    color: darkred !important;
-    padding: 8px 12px;
-    margin: 0;
-    border-radius: 6px;
-    background: #fff;
-    transition: background 0.2s ease;
-  }
-
-  .main-menu .dropdown a:hover {
-    background: #f2f2f2;
-  }
-
-  /* Nested submenu */
-  .main-menu .submenu {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    justify-content: flex-start;
-    align-items: center;
-    gap: 5px 15px;
-    padding-left: 1rem;      /* indent for nested */
-    margin-top: 0.3rem;
-    background: #fff;
-    border-radius: 6px;
-  }
-
-  .main-menu .submenu a {
-    text-align: center;
-    color: #b22222 !important;  /* slightly darker red */
-    padding: 6px 10px;
-    border-radius: 4px;
-    width: auto;
-  }
-
-  /* Ensure wrapping of long names (like Chung Hom Kok) */
-  .main-menu .dropdown a,
-  .main-menu .submenu a {
+  
+.main-menu .dropdown a,
+.main-menu .submenu a {
     white-space: normal;
     word-break: break-word;
   }
+
+  
 }
+
 
 
 /* Default: hide on desktop */
@@ -1912,3 +1860,4 @@ a.button:hover {
       }
 
     }
+
