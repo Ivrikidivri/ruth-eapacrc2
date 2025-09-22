@@ -110,3 +110,57 @@ if (toggleBtn && navMenu) {
     if (currentIndex > 0) currentIndex--, fullImg.src = images[currentIndex];
     else closeFullImg();
   }
+
+
+// Top-level menu items with dropdown
+const menuItems = document.querySelectorAll('.menu-item');
+
+// Nested submenu items
+const subMenuItems = document.querySelectorAll('.has-submenu');
+
+menuItems.forEach(item => {
+  const link = item.querySelector('a');
+  link.addEventListener('click', (e) => {
+    if (window.innerWidth <= 768) {
+      e.preventDefault(); // prevent navigation if dropdown exists
+
+      // Close other top-level dropdowns
+      menuItems.forEach(i => {
+        if (i !== item) {
+          i.classList.remove('active');
+        }
+      });
+
+      // Toggle current dropdown
+      item.classList.toggle('active');
+    }
+  });
+});
+
+subMenuItems.forEach(subItem => {
+  const link = subItem.querySelector('a');
+  link.addEventListener('click', (e) => {
+    if (window.innerWidth <= 768) {
+      e.preventDefault(); // prevent navigation if nested submenu exists
+
+      // Close sibling submenus
+      const siblings = subItem.parentElement.querySelectorAll('.has-submenu');
+      siblings.forEach(sib => {
+        if (sib !== subItem) {
+          sib.classList.remove('active');
+        }
+      });
+
+      // Toggle current nested submenu
+      subItem.classList.toggle('active');
+    }
+  });
+});
+
+// Close all menus if clicking outside
+document.addEventListener('click', (e) => {
+  if (!e.target.closest('.main-menu')) {
+    menuItems.forEach(i => i.classList.remove('active'));
+    subMenuItems.forEach(s => s.classList.remove('active'));
+  }
+});
