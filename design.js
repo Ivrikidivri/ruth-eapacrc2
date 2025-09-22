@@ -111,23 +111,24 @@ if (toggleBtn && navMenu) {
     else closeFullImg();
   }
 
-const allDropdowns = document.querySelectorAll('.menu-item, .has-submenu');
+const allDropdownItems = document.querySelectorAll('.menu-item');
 
-allDropdowns.forEach(item => {
+allDropdownItems.forEach(item => {
   const link = item.querySelector('a');
+
   link.addEventListener('click', e => {
     if (window.innerWidth <= 768) {
-      const hasSubmenu = item.querySelector('.dropdown, .submenu');
-      if (!hasSubmenu) return; // only toggle if it has a submenu
+      const dropdown = item.querySelector('.dropdown, .submenu');
+      if (!dropdown) return; // No dropdown, normal link
 
       e.preventDefault();
 
-      // Close all other open dropdowns
-      allDropdowns.forEach(i => {
+      // Close all other dropdowns (including nested)
+      allDropdownItems.forEach(i => {
         if (i !== item) i.classList.remove('active');
       });
 
-      // Toggle the clicked dropdown
+      // Toggle clicked dropdown
       item.classList.toggle('active');
     }
   });
@@ -136,8 +137,6 @@ allDropdowns.forEach(item => {
 // Close all menus if clicking outside
 document.addEventListener('click', e => {
   if (!e.target.closest('.main-menu')) {
-    allDropdowns.forEach(i => i.classList.remove('active'));
+    allDropdownItems.forEach(i => i.classList.remove('active'));
   }
 });
-
-
