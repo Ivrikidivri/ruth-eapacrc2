@@ -18,32 +18,7 @@ if (toggleBtn && navMenu) {
   });
 }
 
-        // Mobile accordion submenus
-        const submenuParents = navbarContainer.querySelectorAll(".has-submenu > a");
-        submenuParents.forEach(link => {
-          link.addEventListener("click", e => {
-            if (window.innerWidth <= 768) {
-              e.preventDefault();
-              link.parentElement.classList.toggle("active");
-            }
-          });
-        });
-
-        // Top-level dropdowns (mobile)
-        const topLinks = navbarContainer.querySelectorAll(".menu-item > a");
-        topLinks.forEach(link => {
-          const parent = link.parentElement;
-          const dropdown = parent.querySelector(".dropdown");
-          if (dropdown) {
-            link.addEventListener("click", e => {
-              if (window.innerWidth <= 768) {
-                e.preventDefault();
-                parent.classList.toggle("active");
-              }
-            });
-          }
-        });
-      })
+        
       .catch(err => console.error("Navbar load error:", err));
   }
 
@@ -143,3 +118,4 @@ document.addEventListener('click', e => {
     dropdownItems.forEach(i => i.classList.remove('active'));
   }
 });
+
