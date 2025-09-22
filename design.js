@@ -111,32 +111,35 @@ if (toggleBtn && navMenu) {
     else closeFullImg();
   }
 
-const allDropdownItems = document.querySelectorAll('.menu-item');
+// Select both top-level menu items and nested submenu items
+const dropdownItems = document.querySelectorAll('.menu-item, .has-submenu');
 
-allDropdownItems.forEach(item => {
+dropdownItems.forEach(item => {
   const link = item.querySelector('a');
 
   link.addEventListener('click', e => {
     if (window.innerWidth <= 768) {
-      const dropdown = item.querySelector('.dropdown, .submenu');
-      if (!dropdown) return; // No dropdown, normal link
+      const hasDropdown = item.querySelector('.dropdown, .submenu');
+      if (!hasDropdown) return; // skip if no submenu
 
       e.preventDefault();
 
-      // Close all other dropdowns (including nested)
-      allDropdownItems.forEach(i => {
-        if (i !== item) i.classList.remove('active');
+      // Close all other dropdowns (both menu-item and has-submenu)
+      dropdownItems.forEach(i => {
+        if (i !== item) {
+          i.classList.remove('active');
+        }
       });
 
-      // Toggle clicked dropdown
+      // Toggle the clicked dropdown
       item.classList.toggle('active');
     }
   });
 });
 
-// Close all menus if clicking outside
+// Close all dropdowns if clicking outside
 document.addEventListener('click', e => {
   if (!e.target.closest('.main-menu')) {
-    allDropdownItems.forEach(i => i.classList.remove('active'));
+    dropdownItems.forEach(i => i.classList.remove('active'));
   }
 });
