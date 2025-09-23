@@ -667,6 +667,11 @@ footer {
   }
 }
 
+@media (min-width: 769px) {
+  .has-submenu:hover .submenu {
+    display: flex;
+  }
+}
 
 
 
@@ -1768,6 +1773,7 @@ a.button:hover {
         grid-template-columns: 1fr;
       }
     }
+
 
 
 
