@@ -18,52 +18,54 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         // Mobile top-level accordion toggle
-const topLinks = navbarContainer.querySelectorAll(".menu-item > a");
-topLinks.forEach(link => {
-  const parent = link.parentElement;
-  const dropdown = parent.querySelector(".dropdown");
+        const topLinks = navbarContainer.querySelectorAll(".menu-item > a");
+        topLinks.forEach(link => {
+          const parent = link.parentElement;
+          const dropdown = parent.querySelector(".dropdown");
 
-  if (dropdown) {
-    link.addEventListener("click", e => {
-      if (window.innerWidth <= 768) {
-        e.preventDefault();
+          if (dropdown) {
+            link.addEventListener("click", e => {
+              if (window.innerWidth <= 768) {
+                e.preventDefault();
+                if (parent.classList.contains("active")) {
+                  parent.classList.remove("active");
+                } else {
+                  topLinks.forEach(otherLink => {
+                    const otherParent = otherLink.parentElement;
+                    otherParent.classList.remove("active");
+                  });
+                  parent.classList.add("active");
+                }
+              }
+            });
+          }
+        });
 
-        // If already active, close it
-        if (parent.classList.contains("active")) {
-          parent.classList.remove("active");
-        } else {
-          // Close all other top-level dropdowns
-          topLinks.forEach(otherLink => {
-            const otherParent = otherLink.parentElement;
-            otherParent.classList.remove("active");
+        // Nested submenu toggle (accordion inside dropdown)
+        const submenuParents = navbarContainer.querySelectorAll(".has-submenu > a");
+        submenuParents.forEach(link => {
+          link.addEventListener("click", e => {
+            if (window.innerWidth <= 768) {
+              e.preventDefault();
+              const parent = link.parentElement;
+              parent.classList.toggle("active");
+            }
           });
-          // Open this one
-          parent.classList.add("active");
-        }
-      }
-    });
-  }
-});
+        });
 
-// Nested submenu toggle (accordion behavior inside dropdown)
-const submenuParents = navbarContainer.querySelectorAll(".has-submenu > a");
-submenuParents.forEach(link => {
-  link.addEventListener("click", e => {
-    if (window.innerWidth <= 768) {
-      e.preventDefault();
-
-      const parent = link.parentElement;
-      // Toggle submenu open/close
-      if (parent.classList.contains("active")) {
-        parent.classList.remove("active");
-      } else {
-        parent.classList.add("active");
-      }
-    }
-  });
-})
-.catch(err => console.error("Navbar load error:", err));
+      })
+      .catch(err => console.error("Navbar load error:", err)); // <-- correctly attached here
   }
+
+  // === Load Footer dynamically ===
+  const footerContainer = document.getElementById("footer");
+  if (footerContainer) {
+    fetch("footer.html")
+      .then(res => res.text())
+      .then(data => footerContainer.innerHTML = data)
+      .catch(err => console.error("Footer load error:", err));
+  }
+
 
   // === Load Footer dynamically ===
   const footerContainer = document.getElementById("footer");
@@ -116,5 +118,6 @@ submenuParents.forEach(link => {
   function nextImage() { if (currentIndex < images.length - 1) currentIndex++, fullImg.src = images[currentIndex]; else closeFullImg(); }
   function prevImage() { if (currentIndex > 0) currentIndex--, fullImg.src = images[currentIndex]; else closeFullImg(); }
 });
+
 
 
