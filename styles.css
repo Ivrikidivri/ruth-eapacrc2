@@ -720,6 +720,19 @@ footer {
   }
 }
 
+/* Mobile: dropdown hidden by default */
+@media (max-width: 767px) {
+  .dropdown,
+  .submenu {
+    display: none;
+  }
+
+  .menu-item.open > .dropdown,
+  .has-submenu.open > .submenu {
+    display: block;
+  }
+}
+
 
 
 
@@ -1847,6 +1860,7 @@ a.button:hover {
         grid-template-columns: 1fr;
       }
     }
+
 
 
 
