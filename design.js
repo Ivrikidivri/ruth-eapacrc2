@@ -112,40 +112,6 @@ if (toggleBtn && navMenu) {
   }
 
 
-// Top-level dropdowns (mobile overlay + toggle)
-const topLinks = navbarContainer.querySelectorAll(".menu-item > a");
-topLinks.forEach(link => {
-  const parent = link.parentElement;
-  const dropdown = parent.querySelector(".dropdown");
-  if (dropdown) {
-    link.addEventListener("click", e => {
-      if (window.innerWidth <= 768) {
-        e.preventDefault();
-
-        // Toggle current dropdown
-        const isActive = parent.classList.contains("active");
-        parent.classList.toggle("active", !isActive);
-
-        // Close other dropdowns
-        topLinks.forEach(otherLink => {
-          const otherParent = otherLink.parentElement;
-          if (otherParent !== parent) otherParent.classList.remove("active");
-        });
-      }
-    });
-  }
-});
-
-// Nested submenus toggle
-const submenuParents = navbarContainer.querySelectorAll(".has-submenu > a");
-submenuParents.forEach(link => {
-  link.addEventListener("click", e => {
-    if (window.innerWidth <= 768) {
-      e.preventDefault();
-      link.parentElement.classList.toggle("active");
-    }
-  });
-});
 
 
 
