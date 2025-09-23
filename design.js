@@ -92,3 +92,38 @@ document.addEventListener("DOMContentLoaded", () => {
     else closeFullImg();
   }
 });
+
+document.addEventListener("DOMContentLoaded", () => {
+  const toggleBtn = document.querySelector(".menu-toggle");
+  const mainMenu = document.querySelector(".main-menu");
+
+  // Hamburger toggle
+  if (toggleBtn && mainMenu) {
+    toggleBtn.addEventListener("click", () => {
+      mainMenu.classList.toggle("show");
+      toggleBtn.classList.toggle("active");
+    });
+  }
+
+  // Mobile dropdown accordion
+  const parentLinks = document.querySelectorAll(".menu-item > a, .has-submenu > a");
+
+  parentLinks.forEach(link => {
+    link.addEventListener("click", (e) => {
+      if (window.innerWidth <= 768) {
+        const parentLi = link.parentElement;
+
+        // Only toggle the clicked one
+        parentLi.classList.toggle("active");
+
+        // Optionally close other open siblings
+        parentLi.parentElement.querySelectorAll(".menu-item.active, .has-submenu.active").forEach(sibling => {
+          if (sibling !== parentLi) sibling.classList.remove("active");
+        });
+
+        e.preventDefault(); // prevent navigation for parent menu
+      }
+    });
+  });
+});
+
