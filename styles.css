@@ -524,112 +524,10 @@ footer {
   border-radius: 6px;
 }
 
-/* Hamburger button */
-.menu-toggle {
-  display: none;         /* hidden on desktop */
-  font-size: 28px;
-  background: darkred;
-  border: none;
-  cursor: pointer;
-  color: #fff;
-  position: relative;
-  z-index: 10000;         /* above everything */
-}
-
-/* === MOBILE NAVBAR === */
+/* === MOBILE NAVBAR (merged & centered) === */
 @media (max-width: 768px) {
 
-  /* Hamburger toggle */
-  .menu-toggle {
-    display: block;
-    margin: 0 auto;          /* center hamburger */
-    font-size: 24px;
-    background: none;
-    border: none;
-    cursor: pointer;
-  }
-
-  /* Main menu container */
-  .main-menu {
-    display: none;            /* hidden by default */
-    flex-direction: column;
-    width: 100%;              /* full width of nav column */
-    background: darkred;      /* adjust color */
-    padding: 0.5rem 1rem;
-    box-sizing: border-box;
-  }
-
-  /* Show main menu when toggled */
-  .main-menu.show {
-    display: flex;
-  }
-
-  /* Top-level menu items */
-  .menu-item > a {
-    display: block;
-    padding: 0.5rem 0;
-    color: white;
-    text-decoration: none;
-    cursor: pointer;
-  }
-
-  /* Dropdown inside menu column */
-  .menu-item > .dropdown {
-  display: none;
-  flex-direction: column;
-  margin-top: 0.5rem;
-  width: calc(100% - 1rem); /* slightly narrower */
-  margin-left: 1rem;        /* shift inside column */
-}
-
-.menu-item.active > .dropdown {
-  display: flex;
-}
-
-/* Nested submenu */
-.has-submenu .submenu {
-  display: none;
-  flex-direction: column;
-  margin-top: 0.5rem;
-  width: calc(100% - 1.5rem); /* narrower again */
-  margin-left: 1.5rem;        /* shifted further right */
-}
-
-.has-submenu.active .submenu {
-  display: flex;
-  }
-
-  /* Optional: style links in dropdown */
-  .dropdown a, .submenu a {
-    padding: 0.25rem 0;
-    color: white;
-    text-decoration: none;
-  }
-
-  /* Optional: hover effect (mobile) */
-  .menu-item > a:hover, .dropdown a:hover, .submenu a:hover {
-    text-decoration: underline;
-  }
-
-  /* Ensure dropdown columns stack vertically */
-  .dropdown-column {
-    display: flex;
-    flex-direction: column;
-  }
-}
-
-
-@media (max-width: 768px) {
-  footer {
-    padding: 20px 10px;
-    font-size: 1rem;
-  }
-}
-
-/* === MOBILE NAVBAR REWORK (UN.org style) === */
-@media (max-width: 768px) {
-  
-  /* Navbar stays fixed top */
+  /* Navbar fixed at top */
   .nav-bar {
     position: fixed;
     top: 0;
@@ -637,18 +535,27 @@ footer {
     width: 100%;
     z-index: 1000;
     background: linear-gradient(135deg, #d41f49, #cb442c);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 1rem;
   }
 
-  /* Hamburger button */
+  /* Hamburger toggle */
   .menu-toggle {
     display: block;
     background: none;
     border: none;
     color: #fff;
     font-size: 1.8rem;
-    padding: 1rem;
     cursor: pointer;
+    z-index: 1500;
   }
+
+  .menu-toggle .icon-hamburger { display: inline; }
+  .menu-toggle .icon-close { display: none; }
+  .menu-toggle.active .icon-hamburger { display: none; }
+  .menu-toggle.active .icon-close { display: inline; }
 
   /* Full-screen overlay menu */
   .main-menu {
@@ -657,66 +564,86 @@ footer {
     left: 0;
     height: 100vh;
     width: 100%;
-    background: linear-gradient(135deg, #d41f49, #cb442c);;
+    background: linear-gradient(135deg, #d41f49, #cb442c);
     transform: translateX(100%);
     transition: transform 0.3s ease-in-out;
     display: flex;
     flex-direction: column;
-    padding: 2rem;
+    align-items: center;      /* Center menu items horizontally */
+    padding: 4rem 2rem 2rem;
     box-sizing: border-box;
-    z-index: 2000;
     overflow-y: auto;
+    z-index: 1200;
   }
 
   .main-menu.show {
     transform: translateX(0);
   }
 
-  /* Menu links vertical */
+  /* Top-level menu items */
   .menu-item > a {
-    display: block;
+    display: flex;
+    justify-content: center;  /* Center text */
+    align-items: center;
     padding: 0.75rem 0;
     font-size: 1.1rem;
-    color: #333;
+    color: #fff;
     font-weight: 600;
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid rgba(255,255,255,0.2);
+    cursor: pointer;
+    text-align: center;
+    width: 100%;
+    max-width: 300px;         /* Optional width limit */
   }
 
-  /* Dropdown styling inside sheet */
+  /* Dropdown accordion inside top-level item */
   .menu-item > .dropdown {
     display: none;
     flex-direction: column;
-    padding-left: 1rem;
     margin-bottom: 1rem;
+    align-items: center;      /* Center child items */
+    width: 100%;
+    padding-left: 0;          /* remove left indent */
+    text-align: center;
   }
+
   .menu-item.active > .dropdown {
     display: flex;
   }
 
-  /* Submenus styling */
+  /* Nested submenu accordion inside dropdown */
   .has-submenu .submenu {
     display: none;
     flex-direction: column;
-    padding-left: 1rem;
+    padding-left: 0;          /* remove left indent */
+    width: 100%;
+    align-items: center;      /* center submenu links */
+    text-align: center;
   }
+
   .has-submenu.active .submenu {
     display: flex;
   }
-  
- .dropdown {
+
+  /* Links inside dropdown/submenu */
+  .dropdown a, .submenu a {
     padding: 0.5rem 0;
+    color: #fff;
     font-size: 1rem;
-    color: red !important;
-    background: #fff !important;
+    text-decoration: none;
+    text-align: center;
+    width: 100%;
+    max-width: 250px;         /* Optional width limit */
   }
 
- .submenu a {
-    padding: 0.5rem 0;
-    font-size: 1rem;
-    color: darkred !important;
-    background: #fff !important;
-  }  
+  /* Hover effect */
+  .menu-item > a:hover,
+  .dropdown a:hover,
+  .submenu a:hover {
+    text-decoration: underline;
+  }
 }
+
 
 /* Default: hide on desktop */
 .mobile-only {
@@ -1850,6 +1777,7 @@ a.button:hover {
         grid-template-columns: 1fr;
       }
     }
+
 
 
 
