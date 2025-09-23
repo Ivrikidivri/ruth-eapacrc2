@@ -385,11 +385,9 @@ footer {
   text-decoration: underline;
 }
 
-/* On desktop only, allow hover */
-@media (min-width: 769px) {
-.menu-item: hover > .dropdown {
-display: block;
-}
+/* Show submenu on hover */
+.has-submenu:hover .submenu {
+  display: flex;
 }
 
 .slider {
@@ -507,7 +505,7 @@ display: block;
   flex-direction: column;
   border-radius: 0 0 8px 8px;
   box-shadow: 0 6px 20px rgba(0,0,0,0.2);
-  z-index: 1000;
+  z-index: 999;
 }
 
 .menu-item:hover .dropdown {
@@ -534,7 +532,7 @@ display: block;
   cursor: pointer;
   color: #fff;
   position: relative;
-  z-index: 9999;         /* above everything */
+  z-index: 10000;         /* above everything */
 }
 
 /* === MOBILE NAVBAR === */
@@ -718,8 +716,6 @@ display: block;
     background: #fff !important;
   }  
 }
-
-
 
 /* Default: hide on desktop */
 .mobile-only {
@@ -1544,7 +1540,7 @@ a.button:hover {
 .form-container input:focus,
 .form-container select:focus,
 .form-container textarea:focus {
-    border-color: #1abc9c;
+    border-color: #cc2a2a;
     box-shadow: 0 0 5px rgba(26, 188, 156, 0.3);
     outline: none;
 }
@@ -1556,7 +1552,7 @@ a.button:hover {
 
 .form-container button[type="submit"] {
     padding: 12px 20px;
-    background-color: #1abc9c;
+    background-color: #cc2a2a;
     color: #fff;
     border: none;
     border-radius: 10px;
@@ -1567,7 +1563,7 @@ a.button:hover {
 }
 
 .form-container button[type="submit"]:hover {
-    background-color: #16a085;
+    background-color: #cc2a2a;
     transform: translateY(-2px);
 }
 
@@ -1852,13 +1848,4 @@ a.button:hover {
       .news-grid {
         grid-template-columns: 1fr;
       }
-
     }
-
-
-
-
-
-
-
-
