@@ -659,7 +659,13 @@ footer {
   z-index: 2000;      /* higher than navbar */
 }
 
-
+@media (max-width: 768px) {
+  /* Hide desktop dropdowns inside mobile menu */
+  .main-menu .dropdown,
+  .main-menu .dropdown-column {
+    display: none !important;
+  }
+}
 
 
 
@@ -1762,6 +1768,7 @@ a.button:hover {
         grid-template-columns: 1fr;
       }
     }
+
 
 
 
