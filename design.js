@@ -93,23 +93,4 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
-  parentLinks.forEach(link => {
-    link.addEventListener("click", (e) => {
-      if (window.innerWidth <= 768) {
-        const parentLi = link.parentElement;
-
-        // Only toggle the clicked one
-        parentLi.classList.toggle("active");
-
-        // Optionally close other open siblings
-        parentLi.parentElement.querySelectorAll(".menu-item.active, .has-submenu.active").forEach(sibling => {
-          if (sibling !== parentLi) sibling.classList.remove("active");
-        });
-
-        e.preventDefault(); // prevent navigation for parent menu
-      }
-    });
-  });
-});
-
-
+ 
