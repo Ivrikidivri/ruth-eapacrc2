@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
+
   // === Load Navbar dynamically ===
   const navbarContainer = document.getElementById("navbar");
   if (navbarContainer) {
@@ -7,54 +8,43 @@ document.addEventListener("DOMContentLoaded", () => {
       .then(data => {
         navbarContainer.innerHTML = data;
 
-        // Hamburger toggle
-        const toggleBtn = navbarContainer.querySelector('.menu-toggle');
-        const navMenu = navbarContainer.querySelector('.main-menu');
-        if (toggleBtn && navMenu) {
-          toggleBtn.addEventListener('click', () => {
-            navMenu.classList.toggle('show');
-            toggleBtn.classList.toggle('active');
-          });
-        }
+      // Hamburger toggle
+const toggleBtn = navbarContainer.querySelector('.menu-toggle');
+const navMenu = navbarContainer.querySelector('.main-menu');
+if (toggleBtn && navMenu) {
+  toggleBtn.addEventListener('click', () => {
+    navMenu.classList.toggle('show');
+    toggleBtn.classList.toggle('active'); // 🔥 add this line
+  });
+}
 
-        // Mobile top-level accordion toggle
-        const topLinks = navbarContainer.querySelectorAll(".menu-item > a");
-        topLinks.forEach(link => {
-          const parent = link.parentElement;
-          const dropdown = parent.querySelector(".dropdown");
-
-          if (dropdown) {
-            link.addEventListener("click", e => {
-              if (window.innerWidth <= 768) {
-                e.preventDefault();
-                if (parent.classList.contains("active")) {
-                  parent.classList.remove("active");
-                } else {
-                  topLinks.forEach(otherLink => {
-                    const otherParent = otherLink.parentElement;
-                    otherParent.classList.remove("active");
-                  });
-                  parent.classList.add("active");
-                }
-              }
-            });
-          }
-        });
-
-        // Nested submenu toggle (accordion inside dropdown)
+        // Mobile accordion submenus
         const submenuParents = navbarContainer.querySelectorAll(".has-submenu > a");
         submenuParents.forEach(link => {
           link.addEventListener("click", e => {
             if (window.innerWidth <= 768) {
               e.preventDefault();
-              const parent = link.parentElement;
-              parent.classList.toggle("active");
+              link.parentElement.classList.toggle("active");
             }
           });
         });
 
+        // Top-level dropdowns (mobile)
+        const topLinks = navbarContainer.querySelectorAll(".menu-item > a");
+        topLinks.forEach(link => {
+          const parent = link.parentElement;
+          const dropdown = parent.querySelector(".dropdown");
+          if (dropdown) {
+            link.addEventListener("click", e => {
+              if (window.innerWidth <= 768) {
+                e.preventDefault();
+                parent.classList.toggle("active");
+              }
+            });
+          }
+        });
       })
-      .catch(err => console.error("Navbar load error:", err)); // <-- correctly attached here
+      .catch(err => console.error("Navbar load error:", err));
   }
 
   // === Load Footer dynamically ===
@@ -67,14 +57,8 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
 
-  // === Load Footer dynamically ===
-  const footerContainer = document.getElementById("footer");
-  if (footerContainer) {
-    fetch("footer.html")
-      .then(res => res.text())
-      .then(data => footerContainer.innerHTML = data)
-      .catch(err => console.error("Footer load error:", err));
-  }
+});
+
 
   // === Index Slider ===
   const slides = document.querySelector('.slides');
@@ -98,6 +82,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // === Gallery Slider / Lightbox ===
   document.querySelectorAll('.gallery-title, .img-gallery').forEach(el => el.classList.add('show'));
+
   const fullImgBox = document.getElementById("fullImgBox");
   const fullImg = document.getElementById("fullImg");
   let currentIndex = 0;
@@ -114,10 +99,14 @@ document.addEventListener("DOMContentLoaded", () => {
     fullImg.src = images[currentIndex];
     fullImgBox.style.display = 'flex';
   }
+
   function closeFullImg() { fullImgBox.style.display = 'none'; }
-  function nextImage() { if (currentIndex < images.length - 1) currentIndex++, fullImg.src = images[currentIndex]; else closeFullImg(); }
-  function prevImage() { if (currentIndex > 0) currentIndex--, fullImg.src = images[currentIndex]; else closeFullImg(); }
-});
 
-
-
+  function nextImage() {
+    if (currentIndex < images.length - 1) currentIndex++, fullImg.src = images[currentIndex];
+    else closeFullImg();
+  }
+  function prevImage() {
+    if (currentIndex > 0) currentIndex--, fullImg.src = images[currentIndex];
+    else closeFullImg();
+  }
