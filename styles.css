@@ -663,7 +663,35 @@ footer {
   }
 }
 
+@media (max-width: 768px) {
 
+  /* Parent / top-level menu items */
+  .main-menu > .menu-item > a {
+    font-size: 1.2rem;   /* keep parent big */
+    padding: 1rem 2rem;
+  }
+
+  /* First-level dropdown links */
+  .main-menu .menu-item > .dropdown a,
+  .main-menu .has-submenu > .submenu a {
+    font-size: 0.9rem !important;   /* smaller dropdown text */
+    padding: 0.5rem 1.5rem !important;
+    color: #fff;
+  }
+
+  /* Nested / second-level submenu links */
+  .submenu .submenu a {
+    font-size: 0.8rem !important;   /* even smaller */
+    padding-left: 2rem !important;  /* indentation */
+    color: #fff;
+  }
+
+  /* Optional: hover background for dropdown */
+  .dropdown a:hover,
+  .submenu a:hover {
+    background: rgba(255, 255, 255, 0.1);
+  }
+}
 
 
 
@@ -1785,6 +1813,7 @@ a.button:hover {
         grid-template-columns: 1fr;
       }
     }
+
 
 
 
