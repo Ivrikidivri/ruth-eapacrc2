@@ -1,50 +1,56 @@
-// Inside fetch("navbar.html").then(...)
+document.addEventListener("DOMContentLoaded", () => {
+  // === Load Navbar dynamically ===
+  const navbarContainer = document.getElementById("navbar");
+  if (navbarContainer) {
+    fetch("navbar.html")
+      .then(res => res.text())
+      .then(data => {
+        navbarContainer.innerHTML = data;
 
-const toggleBtn = navbarContainer.querySelector('.menu-toggle');
-const navMenu = navbarContainer.querySelector('.main-menu');
+        // Hamburger toggle
+        const toggleBtn = navbarContainer.querySelector('.menu-toggle');
+        const navMenu = navbarContainer.querySelector('.main-menu');
+        if (toggleBtn && navMenu) {
+          toggleBtn.addEventListener('click', () => {
+            navMenu.classList.toggle('show');
+            toggleBtn.classList.toggle('active');
+          });
+        }
 
-if (toggleBtn && navMenu) {
-  // Hamburger toggle
-  toggleBtn.addEventListener('click', () => {
-    navMenu.classList.toggle('show');
-    toggleBtn.classList.toggle('active');
-  });
-}
-
-// Mobile top-level dropdown toggle
-const topLinks = navbarContainer.querySelectorAll(".menu-item > a");
-topLinks.forEach(link => {
-  const parent = link.parentElement;
-  const dropdown = parent.querySelector(".dropdown");
-
-  if (dropdown) {
-    link.addEventListener("click", e => {
-      if (window.innerWidth <= 768) {
-        e.preventDefault();
-
-        // Toggle this dropdown
-        parent.classList.toggle("active");
-
-        // Close other dropdowns
-        topLinks.forEach(otherLink => {
-          const otherParent = otherLink.parentElement;
-          if (otherParent !== parent) otherParent.classList.remove("active");
+        // Mobile top-level dropdown toggle
+        const topLinks = navbarContainer.querySelectorAll(".menu-item > a");
+        topLinks.forEach(link => {
+          const parent = link.parentElement;
+          const dropdown = parent.querySelector(".dropdown");
+          if (dropdown) {
+            link.addEventListener("click", e => {
+              if (window.innerWidth <= 768) {
+                e.preventDefault();
+                parent.classList.toggle("active");
+                // Close other dropdowns
+                topLinks.forEach(otherLink => {
+                  const otherParent = otherLink.parentElement;
+                  if (otherParent !== parent) otherParent.classList.remove("active");
+                });
+              }
+            });
+          }
         });
-      }
-    });
-  }
-});
 
-// Nested submenu toggle
-const submenuParents = navbarContainer.querySelectorAll(".has-submenu > a");
-submenuParents.forEach(link => {
-  link.addEventListener("click", e => {
-    if (window.innerWidth <= 768) {
-      e.preventDefault();
-      link.parentElement.classList.toggle("active"); // open/close submenu
-    }
-  });
-});
+        // Nested submenu toggle
+        const submenuParents = navbarContainer.querySelectorAll(".has-submenu > a");
+        submenuParents.forEach(link => {
+          link.addEventListener("click", e => {
+            if (window.innerWidth <= 768) {
+              e.preventDefault();
+              link.parentElement.classList.toggle("active");
+            }
+          });
+        });
+
+      })
+      .catch(err => console.error("Navbar load error:", err));
+  }
 
   // === Load Footer dynamically ===
   const footerContainer = document.getElementById("footer");
@@ -54,10 +60,6 @@ submenuParents.forEach(link => {
       .then(data => footerContainer.innerHTML = data)
       .catch(err => console.error("Footer load error:", err));
   }
-
-
-});
-
 
   // === Index Slider ===
   const slides = document.querySelector('.slides');
@@ -81,7 +83,6 @@ submenuParents.forEach(link => {
 
   // === Gallery Slider / Lightbox ===
   document.querySelectorAll('.gallery-title, .img-gallery').forEach(el => el.classList.add('show'));
-
   const fullImgBox = document.getElementById("fullImgBox");
   const fullImg = document.getElementById("fullImg");
   let currentIndex = 0;
@@ -98,60 +99,7 @@ submenuParents.forEach(link => {
     fullImg.src = images[currentIndex];
     fullImgBox.style.display = 'flex';
   }
-
   function closeFullImg() { fullImgBox.style.display = 'none'; }
-
-  function nextImage() {
-    if (currentIndex < images.length - 1) currentIndex++, fullImg.src = images[currentIndex];
-    else closeFullImg();
-  }
-  function prevImage() {
-    if (currentIndex > 0) currentIndex--, fullImg.src = images[currentIndex];
-    else closeFullImg();
-  }
-
-
-
-// Mobile top-level dropdown toggle
-const topLinks = navbarContainer.querySelectorAll(".menu-item > a");
-
-topLinks.forEach(link => {
-  const parent = link.parentElement;
-  const dropdown = parent.querySelector(".dropdown");
-
-  if (dropdown) {
-    link.addEventListener("click", e => {
-      if (window.innerWidth <= 768) {
-        e.preventDefault();
-
-        // Toggle current dropdown
-        parent.classList.toggle("active"); // <-- this opens/closes
-
-        // Optional: close other dropdowns
-        topLinks.forEach(otherLink => {
-          const otherParent = otherLink.parentElement;
-          if (otherParent !== parent) otherParent.classList.remove("active");
-        });
-      }
-    });
-  }
+  function nextImage() { if (currentIndex < images.length - 1) currentIndex++, fullImg.src = images[currentIndex]; else closeFullImg(); }
+  function prevImage() { if (currentIndex > 0) currentIndex--, fullImg.src = images[currentIndex]; else closeFullImg(); }
 });
-
-// Nested submenu toggle (inside dropdowns)
-const submenuParents = navbarContainer.querySelectorAll(".has-submenu > a");
-
-submenuParents.forEach(link => {
-  link.addEventListener("click", e => {
-    if (window.innerWidth <= 768) {
-      e.preventDefault();
-      link.parentElement.classList.toggle("active"); // open/close submenu
-    }
-  });
-});
-
-
-
-
-
-
-
