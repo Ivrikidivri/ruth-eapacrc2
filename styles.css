@@ -641,6 +641,21 @@ footer {
   }
 }
 
+/* Mobile-specific adjustments */
+@media (max-width: 768px) {
+  /* Hamburger toggle already visible */
+  .menu-toggle {
+    display: block;
+  }
+
+  /* Make mobile menu links smaller */
+  .main-menu .menu-item > a,
+  .main-menu .submenu a,
+  .main-menu .dropdown a {
+    font-size: 0.9rem;  /* smaller than desktop */
+  }
+}
+
 
 
 
@@ -1755,6 +1770,7 @@ a.button:hover {
         grid-template-columns: 1fr;
       }
     }
+
 
 
 
