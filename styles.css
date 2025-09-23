@@ -88,6 +88,7 @@ p {
   display: flex;
   align-items: center;
   gap: 16px;
+  cursor: pointer;
 }
 
 .title-slogan h1 {
@@ -444,7 +445,7 @@ footer {
   background: linear-gradient(90deg, #e63946, #cc2a2a);
   padding: 10px 20px;
   display: flex;
-  justify-content: center;
+  justify-content: center; /* space for hamburger and logo */
   align-items: center;
   position: relative;
   z-index: 1500;
@@ -455,6 +456,24 @@ footer {
   align-items: center;
   gap: 1rem;
 }
+
+/* Dropdown links */
+.nav-bar .dropdown-column a {
+ color: red;       /* heading text color */
+ font-weight: 700; /* optional: make it bold */
+}
+
+.nav-bar .dropdown-column a:hover {
+ color: darkred;       
+ font-weight: 700;
+}
+
+/* Optional: change link color on hover */
+.nav-bar .submenu a {
+  color: darkred;   /* slightly darker red when hovering */
+  text-decoration: underline; /* optional */
+}
+
 
 /* Main menu desktop */
 .main-menu {
@@ -476,7 +495,7 @@ footer {
   text-align: center;
 }
 
-/* Desktop dropdown */
+/* Dropdown desktop */
 .dropdown {
   display: none;
   position: absolute;
@@ -505,130 +524,198 @@ footer {
   border-radius: 6px;
 }
 
-.nav-bar .dropdown-column a:hover {
-  color: darkred;
-  font-weight: 700;
+/* Hamburger button */
+.menu-toggle {
+  display: none;         /* hidden on desktop */
+  font-size: 28px;
+  background: darkred;
+  border: none;
+  cursor: pointer;
+  color: #fff;
+  position: relative;
+  z-index: 10000;         /* above everything */
 }
 
-.nav-bar .submenu a {
-  color: darkred;
-  text-decoration: underline;
-}
-
-/* Mobile styles */
+/* === MOBILE NAVBAR === */
 @media (max-width: 768px) {
 
   /* Hamburger toggle */
   .menu-toggle {
     display: block;
-    background: #d41f49;
+    margin: 0 auto;          /* center hamburger */
+    font-size: 24px;
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+
+  /* Main menu container */
+  .main-menu {
+    display: none;            /* hidden by default */
+    flex-direction: column;
+    width: 100%;              /* full width of nav column */
+    background: darkred;      /* adjust color */
+    padding: 0.5rem 1rem;
+    box-sizing: border-box;
+  }
+
+  /* Show main menu when toggled */
+  .main-menu.show {
+    display: flex;
+  }
+
+  /* Top-level menu items */
+  .menu-item > a {
+    display: block;
+    padding: 0.5rem 0;
+    color: white;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  /* Dropdown inside menu column */
+  .menu-item > .dropdown {
+  display: none;
+  flex-direction: column;
+  margin-top: 0.5rem;
+  width: calc(100% - 1rem); /* slightly narrower */
+  margin-left: 1rem;        /* shift inside column */
+}
+
+.menu-item.active > .dropdown {
+  display: flex;
+}
+
+/* Nested submenu */
+.has-submenu .submenu {
+  display: none;
+  flex-direction: column;
+  margin-top: 0.5rem;
+  width: calc(100% - 1.5rem); /* narrower again */
+  margin-left: 1.5rem;        /* shifted further right */
+}
+
+.has-submenu.active .submenu {
+  display: flex;
+  }
+
+  /* Optional: style links in dropdown */
+  .dropdown a, .submenu a {
+    padding: 0.25rem 0;
+    color: white;
+    text-decoration: none;
+  }
+
+  /* Optional: hover effect (mobile) */
+  .menu-item > a:hover, .dropdown a:hover, .submenu a:hover {
+    text-decoration: underline;
+  }
+
+  /* Ensure dropdown columns stack vertically */
+  .dropdown-column {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+
+@media (max-width: 768px) {
+  footer {
+    padding: 20px 10px;
+    font-size: 1rem;
+  }
+}
+
+/* === MOBILE NAVBAR REWORK (UN.org style) === */
+@media (max-width: 768px) {
+  
+  /* Navbar stays fixed top */
+  .nav-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    background: linear-gradient(135deg, #d41f49, #cb442c);
+  }
+
+  /* Hamburger button */
+  .menu-toggle {
+    display: block;
+    background: none;
     border: none;
     color: #fff;
     font-size: 1.8rem;
     padding: 1rem;
     cursor: pointer;
-    position: relative;
-    z-index: 2000;
   }
 
-  .menu-toggle .icon-hamburger { display: inline; }
-  .menu-toggle .icon-close { display: none; }
-  .menu-toggle.active .icon-hamburger { display: none; }
-  .menu-toggle.active .icon-close { display: inline; }
-
-  /* Mobile menu container */
+  /* Full-screen overlay menu */
   .main-menu {
     position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
     height: 100vh;
-    background: linear-gradient(135deg, #d41f49, #cb442c);
-    display: flex;
-    flex-direction: column;
-    padding: 6rem 1rem 2rem;
-    overflow-y: auto;
+    width: 100%;
+    background: linear-gradient(135deg, #d41f49, #cb442c);;
     transform: translateX(100%);
     transition: transform 0.3s ease-in-out;
-    z-index: 1500;
+    display: flex;
+    flex-direction: column;
+    padding: 2rem;
+    box-sizing: border-box;
+    z-index: 2000;
+    overflow-y: auto;
   }
 
   .main-menu.show {
     transform: translateX(0);
   }
 
-  /* Top-level menu items */
+  /* Menu links vertical */
   .menu-item > a {
-    font-size: 0.95rem;   /* smaller text */
-    font-weight: 700;
-    color: #fff;
-    padding: 0.8rem 1rem;
-    width: 100%;
-    text-align: left;
-    cursor: pointer;
-    border-bottom: 1px solid rgba(255,255,255,0.2);
-    position: relative;
+    display: block;
+    padding: 0.75rem 0;
+    font-size: 1.1rem;
+    color: #333;
+    font-weight: 600;
+    border-bottom: 1px solid #eee;
   }
 
-  /* Arrow for dropdown */
-  .menu-item > a::after {
-    content: '▼';
-    position: absolute;
-    right: 1.5rem;
-    transition: transform 0.3s ease;
-  }
-
-  .menu-item.active > a::after {
-    transform: rotate(-180deg);
-  }
-
-  /* Accordion dropdown inside parent */
-  .menu-item > .dropdown,
-  .has-submenu > .submenu {
-    display: none; /* hidden by default */
+  /* Dropdown styling inside sheet */
+  .menu-item > .dropdown {
+    display: none;
     flex-direction: column;
-    padding-left: 1.5rem;
-    background: rgba(255, 255, 255, 0.05);
-    font-size: 0.85rem; /* smaller text */
+    padding-left: 1rem;
+    margin-bottom: 1rem;
+  }
+  .menu-item.active > .dropdown {
+    display: flex;
   }
 
-  .menu-item.active > .dropdown,
+  /* Submenus styling */
+  .has-submenu .submenu {
+    display: none;
+    flex-direction: column;
+    padding-left: 1rem;
+  }
   .has-submenu.active .submenu {
     display: flex;
   }
-
-  /* Dropdown links */
-  .dropdown a,
-  .submenu a {
-    padding: 0.6rem 0.8rem;
-    font-size: 0.85rem;
-    color: #fff;
-    text-decoration: none;
-    border-bottom: 1px solid rgba(255,255,255,0.1);
-    width: 100%;
+  
+ .dropdown {
+    padding: 0.5rem 0;
+    font-size: 1rem;
+    color: red !important;
+    background: #fff !important;
   }
 
-  .dropdown a:hover,
-  .submenu a:hover {
-    background: rgba(255,255,255,0.1);
-  }
-
-  /* Nested submenu further indented */
-  .has-submenu .submenu {
-    padding-left: 2rem;
-  }
-
-  /* Prevent hover dropdowns on mobile */
-  .menu-item:hover .dropdown,
-  .has-submenu:hover .submenu {
-    display: none;
-  }
-
-  /* Show hamburger-only elements */
-  .mobile-only {
-    display: flex;
-    align-items: center;
-  }
+ .submenu a {
+    padding: 0.5rem 0;
+    font-size: 1rem;
+    color: darkred !important;
+    background: #fff !important;
+  }  
 }
 
 /* Default: hide on desktop */
@@ -644,29 +731,15 @@ footer {
   }
 }
 
-/* Make sure navbar has lower z-index than lightbox */
-#navbar {
-  position: relative; /* or fixed if needed */
-  z-index: 1000;      /* less than lightbox */
-}
+.menu-toggle .icon-hamburger { display: inline; }
+.menu-toggle .icon-close { display: none; }
 
-#fullImgBox {
-  z-index: 2000;      /* higher than navbar */
-}
+.menu-toggle.active .icon-hamburger { display: none; }
+.menu-toggle.active .icon-close { display: inline; }
 
-@media (max-width: 768px) {
-  /* Hide desktop dropdowns inside mobile menu */
-  .main-menu .dropdown,
-  .main-menu .dropdown-column {
-    display: flex;
-  }
-}
 
-@media (min-width: 769px) {
-  .has-submenu:hover .submenu {
-    display: flex;
-  }
-}
+
+
 
 
 
@@ -1149,6 +1222,15 @@ body, html {
   }
 }
 
+/* Make sure navbar has lower z-index than lightbox */
+#navbar {
+  position: relative; /* or fixed if needed */
+  z-index: 1000;      /* less than lightbox */
+}
+
+#fullImgBox {
+  z-index: 2000;      /* higher than navbar */
+}
 
 
 
@@ -1768,8 +1850,6 @@ a.button:hover {
         grid-template-columns: 1fr;
       }
     }
-
-
 
 
 
