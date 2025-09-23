@@ -639,6 +639,16 @@ footer {
   }
 }
 
+@media (min-width: 769px) {
+  .menu-item:hover .dropdown {
+    display: flex;
+  }
+  .has-submenu:hover .submenu {
+    display: flex;
+  }
+}
+
+
 /* Make sure navbar has lower z-index than lightbox */
 #navbar {
   position: relative; /* or fixed if needed */
@@ -1752,6 +1762,7 @@ a.button:hover {
         grid-template-columns: 1fr;
       }
     }
+
 
 
 
