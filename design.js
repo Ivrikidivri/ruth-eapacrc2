@@ -17,38 +17,51 @@ document.addEventListener("DOMContentLoaded", () => {
           });
         }
 
-        // Mobile top-level dropdown toggle
-        const topLinks = navbarContainer.querySelectorAll(".menu-item > a");
-        topLinks.forEach(link => {
-          const parent = link.parentElement;
-          const dropdown = parent.querySelector(".dropdown");
-          if (dropdown) {
-            link.addEventListener("click", e => {
-              if (window.innerWidth <= 768) {
-                e.preventDefault();
-                parent.classList.toggle("active");
-                // Close other dropdowns
-                topLinks.forEach(otherLink => {
-                  const otherParent = otherLink.parentElement;
-                  if (otherParent !== parent) otherParent.classList.remove("active");
-                });
-              }
-            });
-          }
-        });
+        // Mobile top-level accordion toggle
+const topLinks = navbarContainer.querySelectorAll(".menu-item > a");
+topLinks.forEach(link => {
+  const parent = link.parentElement;
+  const dropdown = parent.querySelector(".dropdown");
 
-        // Nested submenu toggle
-        const submenuParents = navbarContainer.querySelectorAll(".has-submenu > a");
-        submenuParents.forEach(link => {
-          link.addEventListener("click", e => {
-            if (window.innerWidth <= 768) {
-              e.preventDefault();
-              link.parentElement.classList.toggle("active");
-            }
+  if (dropdown) {
+    link.addEventListener("click", e => {
+      if (window.innerWidth <= 768) {
+        e.preventDefault();
+
+        // If already active, close it
+        if (parent.classList.contains("active")) {
+          parent.classList.remove("active");
+        } else {
+          // Close all other top-level dropdowns
+          topLinks.forEach(otherLink => {
+            const otherParent = otherLink.parentElement;
+            otherParent.classList.remove("active");
           });
-        });
+          // Open this one
+          parent.classList.add("active");
+        }
+      }
+    });
+  }
+});
 
-      })
+// Nested submenu toggle (accordion behavior inside dropdown)
+const submenuParents = navbarContainer.querySelectorAll(".has-submenu > a");
+submenuParents.forEach(link => {
+  link.addEventListener("click", e => {
+    if (window.innerWidth <= 768) {
+      e.preventDefault();
+
+      const parent = link.parentElement;
+      // Toggle submenu open/close
+      if (parent.classList.contains("active")) {
+        parent.classList.remove("active");
+      } else {
+        parent.classList.add("active");
+      }
+    }
+  });
+});
       .catch(err => console.error("Navbar load error:", err));
   }
 
@@ -103,3 +116,4 @@ document.addEventListener("DOMContentLoaded", () => {
   function nextImage() { if (currentIndex < images.length - 1) currentIndex++, fullImg.src = images[currentIndex]; else closeFullImg(); }
   function prevImage() { if (currentIndex > 0) currentIndex--, fullImg.src = images[currentIndex]; else closeFullImg(); }
 });
+
