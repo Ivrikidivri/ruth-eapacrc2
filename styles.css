@@ -641,21 +641,24 @@ footer {
   }
 }
 
-/* Mobile-specific adjustments */
 @media (max-width: 768px) {
-  /* Hamburger toggle already visible */
-  .menu-toggle {
-    display: block;
+
+  .main-menu li a {
+    font-size: 1.1rem; /* top-level menu item */
+    padding: 0.75rem 2rem;
   }
 
-  /* Make mobile menu links smaller */
-  .main-menu .menu-item > a,
-  .main-menu .submenu a,
-  .main-menu .dropdown a {
-    font-size: 0.9rem;  /* smaller than desktop */
+  /* Dropdown and nested submenu links smaller */
+  .main-menu .submenu a {
+    font-size: 0.85rem;  /* smaller text for dropdowns */
+    padding: 0.5rem 1.5rem;
+  }
+
+  .submenu .submenu a {
+    font-size: 0.8rem;   /* even smaller for nested submenus */
+    padding-left: 2rem;  /* indentation */
   }
 }
-
 
 
 
@@ -1780,6 +1783,7 @@ a.button:hover {
         grid-template-columns: 1fr;
       }
     }
+
 
 
 
