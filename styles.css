@@ -643,23 +643,25 @@ footer {
 
 @media (max-width: 768px) {
 
-  .main-menu li a {
-    font-size: 1.1rem; /* top-level menu item */
-    padding: 0.75rem 2rem;
+  /* Top-level parent menu items */
+  .main-menu > .menu-item > a {
+    font-size: 1.2rem;   /* big text for parent menu */
+    padding: 1rem 2rem;
   }
 
-  /* Dropdown and nested submenu links smaller */
-  .main-menu .submenu a {
-    font-size: 0.85rem;  /* smaller text for dropdowns */
+  /* First-level dropdown links */
+  .main-menu .menu-item > .dropdown a,
+  .main-menu .has-submenu > .submenu a {
+    font-size: 0.9rem;  /* smaller text for dropdown */
     padding: 0.5rem 1.5rem;
   }
 
+  /* Nested submenu links (second-level dropdowns) */
   .submenu .submenu a {
-    font-size: 0.8rem;   /* even smaller for nested submenus */
+    font-size: 0.8rem;   /* even smaller for nested dropdown */
     padding-left: 2rem;  /* indentation */
   }
 }
-
 
 
 
@@ -1783,6 +1785,7 @@ a.button:hover {
         grid-template-columns: 1fr;
       }
     }
+
 
 
 
