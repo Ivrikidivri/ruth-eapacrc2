@@ -1,52 +1,38 @@
 document.addEventListener("DOMContentLoaded", () => {
-
-  // === Load Navbar dynamically ===
   const navbarContainer = document.getElementById("navbar");
-  if (navbarContainer) {
-    fetch("navbar.html")
-      .then(res => res.text())
-      .then(data => {
-        navbarContainer.innerHTML = data;
+  if (!navbarContainer) return;
 
-      // Hamburger toggle
-const toggleBtn = navbarContainer.querySelector('.menu-toggle');
-const navMenu = navbarContainer.querySelector('.main-menu');
-if (toggleBtn && navMenu) {
-  toggleBtn.addEventListener('click', () => {
-    navMenu.classList.toggle('show');
-    toggleBtn.classList.toggle('active'); // 🔥 add this line
-  });
-}
+  // Load navbar dynamically
+  fetch("navbar.html")
+    .then(res => res.text())
+    .then(data => {
+      navbarContainer.innerHTML = data;
 
-        // Mobile accordion submenus
-        const submenuParents = navbarContainer.querySelectorAll(".has-submenu > a");
-        submenuParents.forEach(link => {
-          link.addEventListener("click", e => {
-            if (window.innerWidth <= 768) {
-              e.preventDefault();
-              link.parentElement.classList.toggle("active");
-            }
-          });
+      const toggleBtn = navbarContainer.querySelector('.menu-toggle');
+      const navMenu = navbarContainer.querySelector('.main-menu');
+
+      // === Hamburger toggle ===
+      if (toggleBtn && navMenu) {
+        toggleBtn.addEventListener('click', () => {
+          navMenu.classList.toggle('show');
+          toggleBtn.classList.toggle('active');
         });
+      }
 
-        // Top-level dropdowns (mobile)
-        const topLinks = navbarContainer.querySelectorAll(".menu-item > a");
-        topLinks.forEach(link => {
-          const parent = link.parentElement;
-          const dropdown = parent.querySelector(".dropdown");
-          if (dropdown) {
-            link.addEventListener("click", e => {
-              if (window.innerWidth <= 768) {
-                e.preventDefault();
-                parent.classList.toggle("active");
-              }
-            });
+      // === Mobile accordion for submenus ===
+      const submenuParents = navbarContainer.querySelectorAll(".menu-item.has-submenu > a");
+      submenuParents.forEach(link => {
+        link.addEventListener("click", e => {
+          if (window.innerWidth <= 768) {
+            e.preventDefault();                // stop default link behavior
+            const parent = link.parentElement;
+            parent.classList.toggle("active"); // show/hide submenu
           }
         });
-      })
-      .catch(err => console.error("Navbar load error:", err));
-  }
-
+      });
+    })
+    .catch(err => console.error("Navbar load error:", err));
+});
   // === Load Footer dynamically ===
   const footerContainer = document.getElementById("footer");
   if (footerContainer) {
@@ -110,3 +96,4 @@ if (toggleBtn && navMenu) {
     if (currentIndex > 0) currentIndex--, fullImg.src = images[currentIndex];
     else closeFullImg();
   }
+
