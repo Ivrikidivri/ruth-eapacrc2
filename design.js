@@ -113,6 +113,42 @@ if (toggleBtn && navMenu) {
 
 
 
+// Mobile top-level dropdown toggle
+const topLinks = navbarContainer.querySelectorAll(".menu-item > a");
+
+topLinks.forEach(link => {
+  const parent = link.parentElement;
+  const dropdown = parent.querySelector(".dropdown");
+
+  if (dropdown) {
+    link.addEventListener("click", e => {
+      if (window.innerWidth <= 768) {
+        e.preventDefault();
+
+        // Toggle current dropdown
+        parent.classList.toggle("active"); // <-- this opens/closes
+
+        // Optional: close other dropdowns
+        topLinks.forEach(otherLink => {
+          const otherParent = otherLink.parentElement;
+          if (otherParent !== parent) otherParent.classList.remove("active");
+        });
+      }
+    });
+  }
+});
+
+// Nested submenu toggle (inside dropdowns)
+const submenuParents = navbarContainer.querySelectorAll(".has-submenu > a");
+
+submenuParents.forEach(link => {
+  link.addEventListener("click", e => {
+    if (window.innerWidth <= 768) {
+      e.preventDefault();
+      link.parentElement.classList.toggle("active"); // open/close submenu
+    }
+  });
+});
 
 
 
