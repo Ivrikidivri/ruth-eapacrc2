@@ -708,6 +708,25 @@ footer {
   transform: rotate(-180deg);
 }
 
+/* Default: hide hamburger toggle */
+.menu-toggle {
+  display: none;
+}
+
+/* Show hamburger only on mobile */
+@media (max-width: 768px) {
+  .menu-toggle {
+    display: block;
+  }
+}
+
+
+
+
+
+
+
+
 
 
 
@@ -1828,6 +1847,7 @@ a.button:hover {
         grid-template-columns: 1fr;
       }
     }
+
 
 
 
