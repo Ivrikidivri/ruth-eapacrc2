@@ -61,8 +61,8 @@ submenuParents.forEach(link => {
       }
     }
   });
-});
-      .catch(err => console.error("Navbar load error:", err));
+})
+.catch(err => console.error("Navbar load error:", err));
   }
 
   // === Load Footer dynamically ===
@@ -116,4 +116,5 @@ submenuParents.forEach(link => {
   function nextImage() { if (currentIndex < images.length - 1) currentIndex++, fullImg.src = images[currentIndex]; else closeFullImg(); }
   function prevImage() { if (currentIndex > 0) currentIndex--, fullImg.src = images[currentIndex]; else closeFullImg(); }
 });
+
 
