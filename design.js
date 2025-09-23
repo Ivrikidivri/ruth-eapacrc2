@@ -93,21 +93,6 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
-document.addEventListener("DOMContentLoaded", () => {
-  const toggleBtn = document.querySelector(".menu-toggle");
-  const mainMenu = document.querySelector(".main-menu");
-
-  // Hamburger toggle
-  if (toggleBtn && mainMenu) {
-    toggleBtn.addEventListener("click", () => {
-      mainMenu.classList.toggle("show");
-      toggleBtn.classList.toggle("active");
-    });
-  }
-
-  // Mobile dropdown accordion
-  const parentLinks = document.querySelectorAll(".menu-item > a, .has-submenu > a");
-
   parentLinks.forEach(link => {
     link.addEventListener("click", (e) => {
       if (window.innerWidth <= 768) {
@@ -126,4 +111,5 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 });
+
 
