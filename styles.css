@@ -524,21 +524,90 @@ footer {
   border-radius: 6px;
 }
 
-/* === MOBILE NAVBAR (merged & centered) === */
 @media (max-width: 768px) {
 
-  /* Navbar fixed at top */
-  .nav-bar {
+  /* Full-screen overlay */
+  .main-menu {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    z-index: 1000;
+    height: 100vh;
     background: linear-gradient(135deg, #d41f49, #cb442c);
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
+    align-items: center;   /* center menu items horizontally */
+    padding: 5rem 1rem 2rem;
+    overflow-y: auto;
+    transform: translateX(100%);
+    transition: transform 0.3s ease-in-out;
+    z-index: 1000;
+  }
+
+  .main-menu.show {
+    transform: translateX(0);
+  }
+
+  /* Top-level items */
+  .menu-item > a {
+    display: flex;
+    justify-content: center;  /* center text horizontally */
     align-items: center;
-    padding: 0.5rem 1rem;
+    padding: 1rem 2rem;
+    width: 100%;
+    max-width: 300px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #fff;
+    border-bottom: 1px solid rgba(255,255,255,0.2);
+    cursor: pointer;
+    text-align: center;       /* center text */
+    position: relative;
+  }
+
+  /* Arrow indicator */
+  .menu-item > a::after {
+    content: '▼';
+    font-size: 0.8rem;
+    margin-left: 10px;
+    transition: transform 0.3s;
+  }
+  .menu-item.active > a::after {
+    transform: rotate(-180deg);
+  }
+
+  /* Dropdown accordion */
+  .menu-item > .dropdown,
+  .has-submenu > .submenu {
+    display: none;
+    flex-direction: column;
+    align-items: center;      /* center child links */
+    text-align: center;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0;
+  }
+
+  .menu-item.active > .dropdown,
+  .has-submenu.active .submenu {
+    display: flex;
+  }
+
+  /* Links inside dropdown/submenu */
+  .dropdown a,
+  .submenu a {
+    padding: 0.75rem 2rem;
+    width: 100%;
+    max-width: 250px;       /* optional width limit */
+    text-align: center;
+    color: #fff;
+    font-size: 1rem;
+    text-decoration: none;
+  }
+
+  .dropdown a:hover,
+  .submenu a:hover {
+    background: rgba(255,255,255,0.1);
   }
 
   /* Hamburger toggle */
@@ -548,102 +617,16 @@ footer {
     border: none;
     color: #fff;
     font-size: 1.8rem;
+    padding: 1rem;
     cursor: pointer;
-    z-index: 1500;
+    z-index: 1100;
   }
 
   .menu-toggle .icon-hamburger { display: inline; }
   .menu-toggle .icon-close { display: none; }
   .menu-toggle.active .icon-hamburger { display: none; }
   .menu-toggle.active .icon-close { display: inline; }
-
-  /* Full-screen overlay menu */
-  .main-menu {
-    position: fixed;
-    top: 0;
-    left: 0;
-    height: 100vh;
-    width: 100%;
-    background: linear-gradient(135deg, #d41f49, #cb442c);
-    transform: translateX(100%);
-    transition: transform 0.3s ease-in-out;
-    display: flex;
-    flex-direction: column;
-    align-items: center;      /* Center menu items horizontally */
-    padding: 4rem 2rem 2rem;
-    box-sizing: border-box;
-    overflow-y: auto;
-    z-index: 1200;
-  }
-
-  .main-menu.show {
-    transform: translateX(0);
-  }
-
-  /* Top-level menu items */
-  .menu-item > a {
-    display: flex;
-    justify-content: center;  /* Center text */
-    align-items: center;
-    padding: 0.75rem 0;
-    font-size: 1.1rem;
-    color: #fff;
-    font-weight: 600;
-    border-bottom: 1px solid rgba(255,255,255,0.2);
-    cursor: pointer;
-    text-align: center;
-    width: 100%;
-    max-width: 300px;         /* Optional width limit */
-  }
-
-  /* Dropdown accordion inside top-level item */
-  .menu-item > .dropdown {
-    display: none;
-    flex-direction: column;
-    margin-bottom: 1rem;
-    align-items: center;      /* Center child items */
-    width: 100%;
-    padding-left: 0;          /* remove left indent */
-    text-align: center;
-  }
-
-  .menu-item.active > .dropdown {
-    display: flex;
-  }
-
-  /* Nested submenu accordion inside dropdown */
-  .has-submenu .submenu {
-    display: none;
-    flex-direction: column;
-    padding-left: 0;          /* remove left indent */
-    width: 100%;
-    align-items: center;      /* center submenu links */
-    text-align: center;
-  }
-
-  .has-submenu.active .submenu {
-    display: flex;
-  }
-
-  /* Links inside dropdown/submenu */
-  .dropdown a, .submenu a {
-    padding: 0.5rem 0;
-    color: #fff;
-    font-size: 1rem;
-    text-decoration: none;
-    text-align: center;
-    width: 100%;
-    max-width: 250px;         /* Optional width limit */
-  }
-
-  /* Hover effect */
-  .menu-item > a:hover,
-  .dropdown a:hover,
-  .submenu a:hover {
-    text-decoration: underline;
-  }
 }
-
 
 /* Default: hide on desktop */
 .mobile-only {
@@ -658,11 +641,6 @@ footer {
   }
 }
 
-.menu-toggle .icon-hamburger { display: inline; }
-.menu-toggle .icon-close { display: none; }
-
-.menu-toggle.active .icon-hamburger { display: none; }
-.menu-toggle.active .icon-close { display: inline; }
 
 
 
@@ -1777,6 +1755,7 @@ a.button:hover {
         grid-template-columns: 1fr;
       }
     }
+
 
 
 
