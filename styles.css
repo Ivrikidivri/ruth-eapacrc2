@@ -544,7 +544,7 @@ footer {
   .menu-toggle.active .icon-hamburger { display: none; }
   .menu-toggle.active .icon-close { display: inline; }
 
-  /* Full-screen mobile menu container */
+  /* Mobile menu container */
   .main-menu {
     position: fixed;
     top: 0;
@@ -561,7 +561,6 @@ footer {
     z-index: 1500;
   }
 
-  /* Show menu when active */
   .main-menu.show {
     transform: translateX(0);
   }
@@ -586,26 +585,26 @@ footer {
     right: 1.5rem;
     transition: transform 0.3s ease;
   }
+
   .menu-item.active > a::after {
     transform: rotate(-180deg);
   }
 
-  /* Dropdown inside parent (accordion style) */
+  /* Dropdown / accordion inside parent */
   .menu-item > .dropdown,
   .has-submenu > .submenu {
     display: none; /* hidden by default */
     flex-direction: column;
-    padding-left: 1.5rem; /* indent inside parent */
+    padding-left: 1.5rem;
     background: rgba(255, 255, 255, 0.05);
   }
 
-  /* Show when active */
   .menu-item.active > .dropdown,
   .has-submenu.active .submenu {
     display: flex;
   }
 
-  /* Dropdown links styling */
+  /* Dropdown links */
   .dropdown a,
   .submenu a {
     padding: 0.75rem 1rem;
@@ -626,30 +625,13 @@ footer {
     padding-left: 2rem;
   }
 
-  /* Remove desktop hover dropdowns on mobile */
+  /* Hide desktop hover dropdowns on mobile */
   .menu-item:hover .dropdown,
   .has-submenu:hover .submenu {
     display: none;
   }
 }
 
-  /* Hamburger toggle */
-  .menu-toggle {
-    display: block;
-    background: none;
-    border: none;
-    color: #fff;
-    font-size: 1.8rem;
-    padding: 1rem;
-    cursor: pointer;
-    z-index: 1100;
-  }
-
-  .menu-toggle .icon-hamburger { display: inline; }
-  .menu-toggle .icon-close { display: none; }
-  .menu-toggle.active .icon-hamburger { display: none; }
-  .menu-toggle.active .icon-close { display: inline; }
-}
 /* Default: hide on desktop */
 .mobile-only {
   display: none;
@@ -662,16 +644,6 @@ footer {
     align-items: center;
   }
 }
-
-@media (min-width: 769px) {
-  .menu-item:hover .dropdown {
-    display: flex;
-  }
-  .has-submenu:hover .submenu {
-    display: flex;
-  }
-}
-
 
 /* Make sure navbar has lower z-index than lightbox */
 #navbar {
@@ -1786,6 +1758,7 @@ a.button:hover {
         grid-template-columns: 1fr;
       }
     }
+
 
 
 
