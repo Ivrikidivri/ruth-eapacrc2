@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
+
   // === Load Navbar dynamically ===
   const navbarContainer = document.getElementById("navbar");
   if (navbarContainer) {
@@ -7,17 +8,28 @@ document.addEventListener("DOMContentLoaded", () => {
       .then(data => {
         navbarContainer.innerHTML = data;
 
-        // === Hamburger toggle ===
-        const toggleBtn = navbarContainer.querySelector('.menu-toggle');
-        const navMenu = navbarContainer.querySelector('.main-menu');
-        if (toggleBtn && navMenu) {
-          toggleBtn.addEventListener('click', () => {
-            navMenu.classList.toggle('show');
-            toggleBtn.classList.toggle('active');
-          });
-        }
+      // Hamburger toggle
+const toggleBtn = navbarContainer.querySelector('.menu-toggle');
+const navMenu = navbarContainer.querySelector('.main-menu');
+if (toggleBtn && navMenu) {
+  toggleBtn.addEventListener('click', () => {
+    navMenu.classList.toggle('show');
+    toggleBtn.classList.toggle('active'); // 🔥 add this line
+  });
+}
 
-        // === Top-level dropdowns (accordion style on mobile) ===
+        // Mobile accordion submenus
+        const submenuParents = navbarContainer.querySelectorAll(".has-submenu > a");
+        submenuParents.forEach(link => {
+          link.addEventListener("click", e => {
+            if (window.innerWidth <= 768) {
+              e.preventDefault();
+              link.parentElement.classList.toggle("active");
+            }
+          });
+        });
+
+        // Top-level dropdowns (mobile)
         const topLinks = navbarContainer.querySelectorAll(".menu-item > a");
         topLinks.forEach(link => {
           const parent = link.parentElement;
@@ -26,49 +38,16 @@ document.addEventListener("DOMContentLoaded", () => {
             link.addEventListener("click", e => {
               if (window.innerWidth <= 768) {
                 e.preventDefault();
-
-                // 🔥 Close all other dropdowns
-                navbarContainer.querySelectorAll(".menu-item").forEach(item => {
-                  if (item !== parent) item.classList.remove("active");
-                });
-
-                 // Always open only the clicked one
-                parent.classList.add("active");
+                parent.classList.toggle("active");
               }
             });
-          }
-        });
-
-        // === Nested submenus (accordion style on mobile) ===
-        const submenuParents = navbarContainer.querySelectorAll(".has-submenu > a");
-        submenuParents.forEach(link => {
-          link.addEventListener("click", e => {
-            if (window.innerWidth <= 768) {
-              e.preventDefault();
-              const parent = link.parentElement;
-
-              // 🔥 Close sibling submenus only
-              parent.parentElement.querySelectorAll(".has-submenu").forEach(sib => {
-                if (sib !== parent) sib.classList.remove("active");
-              });
-
-              // Toggle only this submenu
-              parent.classList.toggle("active");
-            }
-          });
-        });
-
-        // === Close all when clicking outside ===
-        document.addEventListener('click', e => {
-          if (!e.target.closest('.main-menu')) {
-            navbarContainer.querySelectorAll('.active').forEach(el => el.classList.remove('active'));
           }
         });
       })
       .catch(err => console.error("Navbar load error:", err));
   }
 
-  // === Footer ===
+  // === Load Footer dynamically ===
   const footerContainer = document.getElementById("footer");
   if (footerContainer) {
     fetch("footer.html")
@@ -76,6 +55,10 @@ document.addEventListener("DOMContentLoaded", () => {
       .then(data => footerContainer.innerHTML = data)
       .catch(err => console.error("Footer load error:", err));
   }
+
+
+});
+
 
   // === Index Slider ===
   const slides = document.querySelector('.slides');
@@ -127,8 +110,6 @@ document.addEventListener("DOMContentLoaded", () => {
     if (currentIndex > 0) currentIndex--, fullImg.src = images[currentIndex];
     else closeFullImg();
   }
-});
-
 
 
 
