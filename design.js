@@ -1,51 +1,50 @@
-document.addEventListener("DOMContentLoaded", () => {
+// Inside fetch("navbar.html").then(...)
 
-  // === Load Navbar dynamically ===
-  const navbarContainer = document.getElementById("navbar");
-  if (navbarContainer) {
-    fetch("navbar.html")
-      .then(res => res.text())
-      .then(data => {
-        navbarContainer.innerHTML = data;
-
-      // Hamburger toggle
 const toggleBtn = navbarContainer.querySelector('.menu-toggle');
 const navMenu = navbarContainer.querySelector('.main-menu');
+
 if (toggleBtn && navMenu) {
+  // Hamburger toggle
   toggleBtn.addEventListener('click', () => {
     navMenu.classList.toggle('show');
-    toggleBtn.classList.toggle('active'); // 🔥 add this line
+    toggleBtn.classList.toggle('active');
   });
 }
 
-        // Mobile accordion submenus
-        const submenuParents = navbarContainer.querySelectorAll(".has-submenu > a");
-        submenuParents.forEach(link => {
-          link.addEventListener("click", e => {
-            if (window.innerWidth <= 768) {
-              e.preventDefault();
-              link.parentElement.classList.toggle("active");
-            }
-          });
-        });
+// Mobile top-level dropdown toggle
+const topLinks = navbarContainer.querySelectorAll(".menu-item > a");
+topLinks.forEach(link => {
+  const parent = link.parentElement;
+  const dropdown = parent.querySelector(".dropdown");
 
-        // Top-level dropdowns (mobile)
-        const topLinks = navbarContainer.querySelectorAll(".menu-item > a");
-        topLinks.forEach(link => {
-          const parent = link.parentElement;
-          const dropdown = parent.querySelector(".dropdown");
-          if (dropdown) {
-            link.addEventListener("click", e => {
-              if (window.innerWidth <= 768) {
-                e.preventDefault();
-                parent.classList.toggle("active");
-              }
-            });
-          }
+  if (dropdown) {
+    link.addEventListener("click", e => {
+      if (window.innerWidth <= 768) {
+        e.preventDefault();
+
+        // Toggle this dropdown
+        parent.classList.toggle("active");
+
+        // Close other dropdowns
+        topLinks.forEach(otherLink => {
+          const otherParent = otherLink.parentElement;
+          if (otherParent !== parent) otherParent.classList.remove("active");
         });
-      })
-      .catch(err => console.error("Navbar load error:", err));
+      }
+    });
   }
+});
+
+// Nested submenu toggle
+const submenuParents = navbarContainer.querySelectorAll(".has-submenu > a");
+submenuParents.forEach(link => {
+  link.addEventListener("click", e => {
+    if (window.innerWidth <= 768) {
+      e.preventDefault();
+      link.parentElement.classList.toggle("active"); // open/close submenu
+    }
+  });
+});
 
   // === Load Footer dynamically ===
   const footerContainer = document.getElementById("footer");
@@ -149,6 +148,7 @@ submenuParents.forEach(link => {
     }
   });
 });
+
 
 
 
