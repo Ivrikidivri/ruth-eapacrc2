@@ -523,9 +523,10 @@ footer {
   border-radius: 6px;
 }
 
-/* === MOBILE NAVBAR MERGED === */
+/* === MOBILE NAVBAR (merged & centered) === */
 @media (max-width: 768px) {
-  /* Navbar stays fixed top */
+
+  /* Navbar fixed at top */
   .nav-bar {
     position: fixed;
     top: 0;
@@ -539,7 +540,7 @@ footer {
     padding: 0.5rem 1rem;
   }
 
-  /* Hamburger button */
+  /* Hamburger toggle */
   .menu-toggle {
     display: block;
     background: none;
@@ -567,6 +568,7 @@ footer {
     transition: transform 0.3s ease-in-out;
     display: flex;
     flex-direction: column;
+    align-items: center;      /* Center menu items horizontally */
     padding: 4rem 2rem 2rem;
     box-sizing: border-box;
     overflow-y: auto;
@@ -580,7 +582,7 @@ footer {
   /* Top-level menu items */
   .menu-item > a {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;  /* Center text */
     align-items: center;
     padding: 0.75rem 0;
     font-size: 1.1rem;
@@ -588,25 +590,34 @@ footer {
     font-weight: 600;
     border-bottom: 1px solid rgba(255,255,255,0.2);
     cursor: pointer;
+    text-align: center;
+    width: 100%;
+    max-width: 300px;         /* Optional width limit */
   }
 
   /* Dropdown accordion inside top-level item */
   .menu-item > .dropdown {
     display: none;
     flex-direction: column;
-    padding-left: 1rem;
     margin-bottom: 1rem;
+    align-items: center;      /* Center child items */
+    width: 100%;
+    padding-left: 0;          /* remove left indent */
+    text-align: center;
   }
 
   .menu-item.active > .dropdown {
     display: flex;
   }
 
-  /* Nested submenu accordion */
+  /* Nested submenu accordion inside dropdown */
   .has-submenu .submenu {
     display: none;
     flex-direction: column;
-    padding-left: 1rem;
+    padding-left: 0;          /* remove left indent */
+    width: 100%;
+    align-items: center;      /* center submenu links */
+    text-align: center;
   }
 
   .has-submenu.active .submenu {
@@ -617,17 +628,20 @@ footer {
   .dropdown a, .submenu a {
     padding: 0.5rem 0;
     color: #fff;
-    text-decoration: none;
     font-size: 1rem;
+    text-decoration: none;
+    text-align: center;
+    width: 100%;
+    max-width: 250px;         /* Optional width limit */
   }
 
+  /* Hover effect */
   .menu-item > a:hover,
   .dropdown a:hover,
   .submenu a:hover {
     text-decoration: underline;
   }
 }
-
 /* Default: hide on desktop */
 .mobile-only {
   display: none;
@@ -641,6 +655,15 @@ footer {
   }
 }
 
+/* Make sure navbar has lower z-index than lightbox */
+#navbar {
+  position: relative; /* or fixed if needed */
+  z-index: 1000;      /* less than lightbox */
+}
+
+#fullImgBox {
+  z-index: 2000;      /* higher than navbar */
+}
 
 
 
@@ -1126,15 +1149,6 @@ body, html {
   }
 }
 
-/* Make sure navbar has lower z-index than lightbox */
-#navbar {
-  position: relative; /* or fixed if needed */
-  z-index: 1000;      /* less than lightbox */
-}
-
-#fullImgBox {
-  z-index: 2000;      /* higher than navbar */
-}
 
 
 
@@ -1754,4 +1768,5 @@ a.button:hover {
         grid-template-columns: 1fr;
       }
     }
+
 
