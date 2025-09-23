@@ -663,7 +663,7 @@ footer {
   /* Hide desktop dropdowns inside mobile menu */
   .main-menu .dropdown,
   .main-menu .dropdown-column {
-    display: none !important;
+    display: flex;
   }
 }
 
@@ -1773,6 +1773,7 @@ a.button:hover {
         grid-template-columns: 1fr;
       }
     }
+
 
 
 
