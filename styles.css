@@ -1028,6 +1028,17 @@ footer {
       #fullImgBox img { max-width: 95%; max-height: 70%; }
     }
 
+@media (max-width:768px){
+  .arrow {
+    font-size: 2rem;   /* smaller arrow icon */
+    width: 40px;       /* smaller circle */
+    height: 40px;
+  }
+}
+
+
+
+
 
 
 
@@ -1740,6 +1751,7 @@ a.button:hover {
         grid-template-columns: 1fr;
       }
     }
+
 
 
 
