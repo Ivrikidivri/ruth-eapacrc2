@@ -1031,6 +1031,16 @@ footer {
   display: none;               /* hide left arrow */
 }
 
+/* Hide left arrow on mobile */
+@media (max-width: 768px) {
+  .arrow.left {
+    display: none;
+  }
+  .arrow.right {
+    display: block; /* make sure right arrow is visible */
+  }
+}
+
 
 
 
@@ -1743,6 +1753,7 @@ a.button:hover {
         grid-template-columns: 1fr;
       }
     }
+
 
 
 
