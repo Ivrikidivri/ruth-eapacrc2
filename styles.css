@@ -1027,7 +1027,9 @@ footer {
       #fullImgBox img { max-width: 95%; max-height: 70%; }
     }
 
-
+.arrow.left {
+  display: none;               /* hide left arrow */
+}
 
 
 
@@ -1741,6 +1743,7 @@ a.button:hover {
         grid-template-columns: 1fr;
       }
     }
+
 
 
 
