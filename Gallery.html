@@ -1,17 +1,18 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Image Gallery</title>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  </head>
-  <body>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Image Gallery</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
 
-  <!-- Header -->
+<!-- Header -->
   <header class="main-header">
     <div class="logo-area">
       <img src="Assets/EAPACRC OF CHESHIRE HOMES (2) (2).png" alt="EAPacRC of Cheshire Homes" onclick="location.href='index.html'">
@@ -31,47 +32,44 @@
     </div>
   </header>
 
-    <div class="full-img" id="fullImgBox" style="display: none;">
-      <div class="lightbox" id="lightBox">
-      <div class=lightbox-overlay>
-        <a class="arrow left" onclick="prevImage()">&#10094;</a>
-        <img src="Assets/_DO_0443 (1) - grace pham.jpg" id="fullImg">
-        <a class="arrow right" onclick="nextImage()">&#10095;</a>
-        <span onclick="closeFullImg()">X</span>
-      </div>
-    </div>
-    </div>
-
-    <!-- 🔹 Navbar loads dynamically -->
+  <!-- 🔹 Navbar loads dynamically -->
   <div id="navbar"></div>
-    
-  <main>
-    <div class="gallery-title-wrapper">
-    <h1 class="gallery-title">Image Gallery</h1>
-    </div>
 
-    <div class="img-gallery">
-        <div><img src="Assets/20250903143428325.jpg" alt="EAPacRC of Cheshire Homes"></div>
-        <div><img src="Assets/Scan 04 Sept 25 16·12·08_2.jpg" alt="EAPacRC of Cheshire Homes"></div>
-        <div><img src="Assets/Scan 04 Sept 25 16·12·08_3.jpg" alt="EAPacRC of Cheshire Homes"></div>
-        <div><img src="Assets/Scan 04 Sept 25 16·13·59.jpg" alt="EAPacRC of Cheshire Homes"></div>
-        <div><img src="Assets/Scan 04 Sept 25 16·15·51.jpg" alt="EAPacRC of Cheshire Homes"></div>
-        <div><img src="Assets/Scan 04 Sept 25 16·17·40.jpg" alt="EAPacRC of Cheshire Homes"></div>
-        <div><img src="Assets/IMG_8111 (1) (1).jpg" alt="EAPacRC OF Cheshire Homes"></div>
+<main>
+  <div class="gallery-title-wrapper">
+    <h2 class="gallery-title">Image Gallery</h2>
+  </div>
+
+  <div class="img-gallery">
+    <div><img src="Assets/20250903143428325.jpg" alt="Image 1"></div>
+    <div><img src="Assets/Scan 04 Sept 25 16·12·08_2.jpg" alt="Image 2"></div>
+    <div><img src="Assets/Scan 04 Sept 25 16·12·08_3.jpg" alt="Image 3"></div>
+    <div><img src="Assets/Scan 04 Sept 25 16·13·59.jpg" alt="Image 4"></div>
+    <div><img src="Assets/Scan 04 Sept 25 16·15·51.jpg" alt="Image 5"></div>
+    <div><img src="Assets/Scan 04 Sept 25 16·17·40.jpg" alt="Image 6"></div>
+    <div><img src="Assets/IMG_8111 (1) (1).jpg" alt="Image 7"></div>
+  </div>
+
+  <!-- Lightbox -->
+  <div id="fullImgBox" style="display:none;">
+    <span class="close-btn" onclick="closeFullImg()">&times;</span>
+    <div class="lightbox-inner">
+      <a class="arrow left" onclick="prevImage()">&#10094;</a>
+      <img id="fullImg" src="" alt="Full Image">
+      <a class="arrow right" onclick="nextImage()">&#10095;</a>
     </div>
-    
-     <div class="widget-wrapper">
+  </div>
+  
+    <div class="widget-wrapper">
       <div class="elfsight-app-ff2ffcfb-2b3d-47e4-aebb-2be7e6d719ad" data-elfsight-app-lazy></div>
     </div>
   </main>
 
   <!-- JS -->
-  <script src="design.js"></script>
-  <script src="https://static.elfsight.com/platform/platform.js" async></script>
+<script src="design.js"></script>
+<script src="https://static.elfsight.com/platform/platform.js" async></script>
 
-<!-- 🔹 Footer loads dynamically -->
+  <!-- 🔹 Footer loads dynamically -->
   <div id="footer"></div>
-  
-  </body>
-
+</body>
 </html>
