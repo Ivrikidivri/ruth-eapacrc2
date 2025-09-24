@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
+
   // === Load Navbar dynamically ===
   const navbarContainer = document.getElementById("navbar");
   if (navbarContainer) {
@@ -7,19 +8,18 @@ document.addEventListener("DOMContentLoaded", () => {
       .then(data => {
         navbarContainer.innerHTML = data;
 
-        const toggleBtn = navbarContainer.querySelector('.menu-toggle');
-        const navMenu = navbarContainer.querySelector('.main-menu');
+      // Hamburger toggle
+const toggleBtn = navbarContainer.querySelector('.menu-toggle');
+const navMenu = navbarContainer.querySelector('.main-menu');
+if (toggleBtn && navMenu) {
+  toggleBtn.addEventListener('click', () => {
+    navMenu.classList.toggle('show');
+    toggleBtn.classList.toggle('active'); // 🔥 add this line
+  });
+}
 
-        // Hamburger toggle
-        if (toggleBtn && navMenu) {
-          toggleBtn.addEventListener('click', () => {
-            navMenu.classList.toggle('show');
-            toggleBtn.classList.toggle('active');
-          });
-        }
-
-        // Mobile accordion for submenus
-        const submenuParents = navbarContainer.querySelectorAll(".menu-item.has-submenu > a");
+        // Mobile accordion submenus
+        const submenuParents = navbarContainer.querySelectorAll(".has-submenu > a");
         submenuParents.forEach(link => {
           link.addEventListener("click", e => {
             if (window.innerWidth <= 768) {
@@ -27,6 +27,21 @@ document.addEventListener("DOMContentLoaded", () => {
               link.parentElement.classList.toggle("active");
             }
           });
+        });
+
+        // Top-level dropdowns (mobile)
+        const topLinks = navbarContainer.querySelectorAll(".menu-item > a");
+        topLinks.forEach(link => {
+          const parent = link.parentElement;
+          const dropdown = parent.querySelector(".dropdown");
+          if (dropdown) {
+            link.addEventListener("click", e => {
+              if (window.innerWidth <= 768) {
+                e.preventDefault();
+                parent.classList.toggle("active");
+              }
+            });
+          }
         });
       })
       .catch(err => console.error("Navbar load error:", err));
@@ -40,6 +55,10 @@ document.addEventListener("DOMContentLoaded", () => {
       .then(data => footerContainer.innerHTML = data)
       .catch(err => console.error("Footer load error:", err));
   }
+
+
+});
+
 
   // === Index Slider ===
   const slides = document.querySelector('.slides');
@@ -62,35 +81,52 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // === Gallery Slider / Lightbox ===
-  document.querySelectorAll('.gallery-title, .img-gallery').forEach(el => el.classList.add('show'));
+const galleryImages = document.querySelectorAll('.img-gallery img');
+    const fullImgBox = document.getElementById('fullImgBox');
+    const fullImg = document.getElementById('fullImg');
+    let currentIndex = 0;
 
-  const fullImgBox = document.getElementById("fullImgBox");
-  const fullImg = document.getElementById("fullImg");
-  let currentIndex = 0;
-  const images = [];
-  const thumbnails = document.querySelectorAll('.img-gallery img');
+    galleryImages.forEach((img, index) => {
+      img.addEventListener('click', () => {
+        currentIndex = index;
+        fullImg.src = img.src;
+        fullImgBox.style.display = 'grid'; // grid ensures centering
+      });
+    });
 
-  thumbnails.forEach((img, i) => {
-    images.push(img.src);
-    img.addEventListener('click', () => openFullImg(i));
-  });
+    function closeFullImg() { fullImgBox.style.display = 'none'; }
 
-  function openFullImg(i) {
-    currentIndex = i;
-    fullImg.src = images[currentIndex];
-    fullImgBox.style.display = 'flex';
+    function prevImage() {
+      currentIndex = (currentIndex - 1 + galleryImages.length) % galleryImages.length;
+      fullImg.src = galleryImages[currentIndex].src;
+    }
+
+    function nextImage() {
+      currentIndex = (currentIndex + 1) % galleryImages.length;
+      fullImg.src = galleryImages[currentIndex].src;
+    }
+
+    // Close lightbox on click outside image
+    fullImgBox.addEventListener('click', e => {
+      if (e.target === fullImgBox) closeFullImg();
+    });
+
+    // Keyboard navigation
+    document.addEventListener('keydown', e => {
+      if(fullImgBox.style.display !== 'none'){
+        if(e.key === 'ArrowLeft') prevImage();
+        if(e.key === 'ArrowRight') nextImage();
+        if(e.key === 'Escape') closeFullImg();
+      }
+    });
+
+    function nextImage() {
+  currentIndex++;
+  if (currentIndex >= galleryImages.length) {
+    // Reached past the last image → close lightbox
+    closeFullImg();
+    currentIndex = 0; // reset for next time
+  } else {
+    fullImg.src = galleryImages[currentIndex].src;
   }
-
-  function closeFullImg() { fullImgBox.style.display = 'none'; }
-
-  function nextImage() {
-    if (currentIndex < images.length - 1) currentIndex++, fullImg.src = images[currentIndex];
-    else closeFullImg();
-  }
-  function prevImage() {
-    if (currentIndex > 0) currentIndex--, fullImg.src = images[currentIndex];
-    else closeFullImg();
-  }
-});
-
- 
+}
