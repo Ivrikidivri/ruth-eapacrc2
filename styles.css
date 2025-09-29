@@ -684,7 +684,6 @@ footer {
     font-size: 0.8rem !important;   /* even smaller */
     padding-left: 2rem !important;  /* indentation */
     color: darkred !important; /* slightly darker red when hovering */
-    text-decoration: underline; /* optional */
   }
 
   /* Optional: hover background for dropdown */
@@ -1757,6 +1756,7 @@ a.button:hover {
         grid-template-columns: 1fr;
       }
     }
+
 
 
 
