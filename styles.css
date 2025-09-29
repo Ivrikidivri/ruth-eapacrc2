@@ -683,7 +683,7 @@ footer {
   .nav-bar .submenu a {
     font-size: 0.8rem !important;   /* even smaller */
     padding-left: 2rem !important;  /* indentation */
-    color: darkred;   /* slightly darker red when hovering */
+    color: darkred !important; /* slightly darker red when hovering */
     text-decoration: underline; /* optional */
   }
 
@@ -1757,6 +1757,7 @@ a.button:hover {
         grid-template-columns: 1fr;
       }
     }
+
 
 
 
