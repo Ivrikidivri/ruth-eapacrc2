@@ -672,17 +672,19 @@ footer {
   }
 
   /* First-level dropdown links */
-  .main-menu .menu-item > .dropdown a {
+  .main-menu .menu-item > .dropdown a,
+  .main-menu .has-submenu > .submenu a {
     font-size: 0.9rem !important;   /* smaller dropdown text */
     padding: 0.5rem 1.5rem !important;
     color: red;
   }
 
   /* Nested / second-level submenu links */
-  .submenu .submenu a {
+  .nav-bar .submenu a {
     font-size: 0.8rem !important;   /* even smaller */
     padding-left: 2rem !important;  /* indentation */
-    color: darkred !important;
+    color: darkred;   /* slightly darker red when hovering */
+    text-decoration: underline; /* optional */
   }
 
   /* Optional: hover background for dropdown */
@@ -1755,6 +1757,7 @@ a.button:hover {
         grid-template-columns: 1fr;
       }
     }
+
 
 
 
