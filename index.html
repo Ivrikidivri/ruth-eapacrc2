@@ -11,29 +11,38 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
+  <!-- Top utility bar 
+  <div class="utility-bar">
+    <div class="utility-left">
+      <button onclick="location.href='index.html'">
+      </button>
+    </div>
+  </div>-->
 
   <!-- Header -->
   <header class="main-header">
-    <div class="logo-area">
-      <img src="Assets/EAPACRC OF CHESHIRE HOMES (2) (2).png" alt="EAPacRC of Cheshire Homes" onclick="location.href='index.html'">
-      <div class="divider"></div>
-      <div class="title-slogan">
-        <h1>East Asia & Pacific Regional Council Secretariat</h1>
-        <p>Empowering People With Disabilities</p>
-      </div>
+  <div class="logo-area">
+    <img src="Assets/EAPACRC OF CHESHIRE HOMES (2) (2).png" alt="EAPacRC of Cheshire Homes" onclick="location.href='index.php'">
+    <div class="divider"></div>
+    <div class="title-slogan">
+      <h1>East Asia & Pacific Regional Council Secretariat</h1>
+      <p>We empower disability communities and support inclusion.</p>
     </div>
-    <div class="header-actions">
-      <div class="search-box">
-        <input type="text" placeholder="Search" aria-label="Search">
-        <button type="submit" aria-label="Search">
-          <i class="fas fa-search"></i>
-        </button>
-      </div>
-    </div>
-  </header>
+  </div>
+  <div class="header-actions">
+  <div class="search-box-wrapper">
+  <form method="GET" action="search.php" class="search-box-form">
+    <input type="text" name="search" placeholder="Search" aria-label="Search" required>
+    <button type="submit" aria-label="Search">
+      <i class="fas fa-search"></i>
+    </button>
+  </form>
+</div>
+</header>
+  
 
   <!-- 🔹 Navbar loads dynamically -->
-  <div id="navbar"></div>
+  <?php require 'navbar.php'; ?>
 
   <!-- MAIN CONTENT -->
   <main>
@@ -90,8 +99,7 @@
   <script src="https://static.elfsight.com/platform/platform.js" async></script>
 
   <!-- 🔹 Footer loads dynamically -->
-  <div id="footer"></div>
+ <?php include 'footer.php'; ?>
 
 </body>
-
 </html>
