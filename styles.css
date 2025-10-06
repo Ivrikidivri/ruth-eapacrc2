@@ -1345,10 +1345,11 @@ a.button:hover {
 .back-link {
   font-size: 0.85rem;
   font-weight: 400;
-  color: #555;
+  color: darkred;
   text-decoration: underline;
   transition: color 0.2s ease;
 }
+
 .back-link:hover {
   color: #0d6efd;
 }
@@ -1365,6 +1366,7 @@ a.button:hover {
     font-size: 1rem;
   }
 }
+
 
 
 
@@ -1756,6 +1758,7 @@ a.button:hover {
         grid-template-columns: 1fr;
       }
     }
+
 
 
 
